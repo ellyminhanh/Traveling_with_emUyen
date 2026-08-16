@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Lịch Trình Mộc Châu</title>
+  <title>Mộc Châu trip with em Uyên</title>
   <style>
     :root {
-      --bg: #f4f6f3;                  /* Misty Fog / Sương núi */
+      --bg: #f5f7f4;                  /* Misty Fog */
       --card-bg: #ffffff;
-      --text: #1c2826;                /* Dark Forest / Rừng đêm */
-      --subtext: #607274;             /* Sage Gray / Ghi xám chè */
-      --primary: #2d5a27;             /* Mộc Châu Tea Green / Xanh đồi trà */
+      --text: #1c2826;                /* Dark Forest */
+      --subtext: #607274;             /* Sage Gray */
+      --primary: #2d5a27;             /* Mộc Châu Tea Green */
       --primary-soft: #eaf2eb;        /* Soft Tea Tint */
-      --warm-wood: #8c6d53;           /* Homestay Wood / Nâu gỗ */
+      --accent-pink: #e88d8d;         /* Soft Blush Pink */
+      --warm-wood: #8c6d53;           /* Homestay Wood */
       --backup-bg: #fdfbf7;
       --backup-border: #e6dfd5;
       --radius: 14px;
-      --shadow: 0 4px 12px rgba(45, 90, 39, 0.05);
+      --shadow: 0 4px 12px rgba(45, 90, 39, 0.06);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -27,31 +28,49 @@
       padding: 12px 14px 30px;
     }
 
+    /* Header & Countdown */
     .app-header {
       text-align: center;
-      margin: 4px 0 12px;
+      margin: 4px 0 10px;
     }
     .app-header h1 {
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-weight: 800;
       color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .countdown-box {
+      background: #ffffff;
+      border: 1px solid rgba(45, 90, 39, 0.12);
+      border-radius: 20px;
+      display: inline-block;
+      padding: 4px 14px;
+      margin-top: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--warm-wood);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
     }
 
-    /* Tab Navigation (3 Ngày) */
+    /* Tab Navigation */
     .day-tabs {
       display: flex;
       background: #e2e8e2;
       padding: 3px;
       border-radius: 12px;
       margin-bottom: 12px;
+      gap: 2px;
     }
     .tab-btn {
       flex: 1;
-      padding: 10px 4px;
+      padding: 8px 2px;
       border: none;
       background: transparent;
       border-radius: 9px;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 700;
       color: var(--subtext);
       cursor: pointer;
@@ -60,7 +79,7 @@
     }
     .tab-btn small {
       display: block;
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       font-weight: 500;
       margin-top: 1px;
     }
@@ -99,12 +118,8 @@
     }
 
     /* Tab Content Views */
-    .tab-content {
-      display: none;
-    }
-    .tab-content.active {
-      display: block;
-    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
 
     /* Timeline Cards */
     .timeline-item {
@@ -176,17 +191,112 @@
       align-items: center;
       gap: 3px;
     }
+
+    /* Memory Log Style */
+    .memory-log {
+      margin-top: 8px;
+      padding-top: 6px;
+      border-top: 1px dashed #e2e8f0;
+    }
+    .memory-input {
+      width: 100%;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 6px 8px;
+      font-size: 0.75rem;
+      outline: none;
+      background: #fcfdfc;
+      color: var(--text);
+    }
+    .memory-input:focus { border-color: var(--primary); }
+
+    /* Checklist & Prep Card */
+    .prep-card {
+      background: #ffffff;
+      border-radius: var(--radius);
+      padding: 14px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(45, 90, 39, 0.08);
+    }
+    .prep-card h3 {
+      font-size: 0.95rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .checklist-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid #f7f7f7;
+      font-size: 0.85rem;
+    }
+    .checklist-item:last-child { border-bottom: none; }
+    .checklist-item input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--primary);
+    }
+    
+    .btn-email {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: linear-gradient(135deg, var(--primary), #3b7a33);
+      color: #ffffff;
+      padding: 10px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.82rem;
+      margin-top: 10px;
+      box-shadow: 0 3px 8px rgba(45, 90, 39, 0.2);
+    }
+
+    /* Stats Footer Widget */
+    .stats-widget {
+      background: #ffffff;
+      border-radius: var(--radius);
+      padding: 12px;
+      margin-top: 20px;
+      text-align: center;
+      border: 1px solid #eaeaea;
+      font-size: 0.78rem;
+      color: var(--subtext);
+    }
+    .stats-grid {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid #f4f5f4;
+    }
+    .stat-number {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--primary);
+      display: block;
+    }
   </style>
 </head>
 <body>
 
   <div class="app-header">
-    <h1>🍃 Mộc Châu Autumn Trip</h1>
+    <h1>🍃 Mộc Châu trip with em Uyên 💖</h1>
+    <div class="countdown-box" id="countdown">⏳ Đang tính ngày đi...</div>
   </div>
 
-  <!-- TAB SWITCHER (3 NAY) -->
+  <!-- TAB SWITCHER (4 TABS) -->
   <div class="day-tabs">
-    <button class="tab-btn active" onclick="switchDay('day1', this)">
+    <button class="tab-btn active" onclick="switchDay('prep', this)">
+      Chuẩn bị
+      <small>27/08</small>
+    </button>
+    <button class="tab-btn" onclick="switchDay('day1', this)">
       Ngày 1
       <small>28/08</small>
     </button>
@@ -200,8 +310,8 @@
     </button>
   </div>
 
-  <!-- CATEGORY FILTER -->
-  <div class="filter-wrapper">
+  <!-- CATEGORY FILTER (Chỉ hiện khi ở Tab Ngày 1,2,3) -->
+  <div class="filter-wrapper" id="filterWrapper" style="display: none;">
     <button class="chip active" onclick="filterCategory('all', this)">Tất cả</button>
     <button class="chip" onclick="filterCategory('Di chuyển', this)">🚗 Di chuyển</button>
     <button class="chip" onclick="filterCategory('Ăn uống', this)">🍽️ Ăn uống</button>
@@ -210,8 +320,33 @@
     <button class="chip" onclick="filterCategory('Nghỉ ngơi', this)">🏡 Nghỉ ngơi</button>
   </div>
 
+  <!-- ================= TAB CHUẨN BỊ (27/08) ================= -->
+  <div id="prep" class="tab-content active">
+    
+    <div class="prep-card">
+      <h3>📧 Nhắc nhở em Uyên qua Email</h3>
+      <p style="font-size: 0.78rem; color: var(--subtext); margin-bottom: 8px;">
+        Gửi 1 email dặn dò chuẩn bị hành lý và đồ dùng tới em Uyên chỉ với 1 cú chạm:
+      </p>
+      <a id="emailBtn" href="#" class="btn-email">💌 Gửi mail dặn em Uyên chuẩn bị đồ</a>
+    </div>
+
+    <div class="prep-card">
+      <h3>🎒 Checklist Hành Trang Đôi</h3>
+      <div id="checklistContainer">
+        <label class="checklist-item"><input type="checkbox" onchange="saveChecklist()" data-id="1"> 👗 Váy đẹp / Đồ chụp ảnh sống ảo</label>
+        <label class="checklist-item"><input type="checkbox" onchange="saveChecklist()" data-id="2"> 🧥 Áo khoác mỏng (Mộc Châu buổi tối lạnh)</label>
+        <label class="checklist-item"><input type="checkbox" onchange="saveChecklist()" data-id="3"> 🆔 CCCD / Giấy tờ tùy thân</label>
+        <label class="checklist-item"><input type="checkbox" onchange="saveChecklist()" data-id="4"> 🔋 Sạc dự phòng & Dây sạc</label>
+        <label class="checklist-item"><input type="checkbox" onchange="saveChecklist()" data-id="5"> 🧴 Kem chống nắng & Xịt chống muỗi</label>
+        <label class="checklist-item"><input type="checkbox" onchange="saveChecklist()" data-id="6"> 💊 Thuốc cá nhân (Say xe, cảm cúm)</label>
+      </div>
+    </div>
+
+  </div>
+
   <!-- ================= NGÀY 1 ================= -->
-  <div id="day1" class="tab-content active">
+  <div id="day1" class="tab-content">
 
     <div class="timeline-item" data-type="Di chuyển">
       <div class="item-header">
@@ -223,6 +358,7 @@
         <div class="meta-tags"><span>📞 098 155 95 51</span></div>
         <a href="https://maps.app.goo.gl/GpWkKJd15ohjQPEr8" target="_blank" class="btn-map">📍 Bản đồ</a>
       </div>
+      <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd1_1')"></div>
     </div>
 
     <div class="timeline-item" data-type="Di chuyển">
@@ -235,6 +371,7 @@
         <div class="meta-tags"><span>📞 0989956390</span></div>
         <a href="https://maps.app.goo.gl/NGqFKCkKH2YcpCLJ7" target="_blank" class="btn-map">📍 Bản đồ</a>
       </div>
+      <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd1_2')"></div>
     </div>
 
     <div class="timeline-item" data-type="Ăn uống">
@@ -247,6 +384,7 @@
         <div class="meta-tags"><span>📞 092.738.8668</span></div>
         <a href="https://maps.app.goo.gl/jcFrYGMfsGsmyk8w6" target="_blank" class="btn-map">📍 Bản đồ</a>
       </div>
+      <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd1_3')"></div>
     </div>
 
     <div class="timeline-item backup" data-type="Ăn uống">
@@ -279,6 +417,7 @@
         <div class="meta-tags"><span>📝 Ngắm hoàng hôn</span></div>
         <a href="https://maps.app.goo.gl/5VFQMaEFukfvgJat9" target="_blank" class="btn-map">📍 Bản đồ</a>
       </div>
+      <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd1_4')"></div>
     </div>
 
     <div class="timeline-item backup" data-type="Cà phê">
@@ -314,6 +453,7 @@
         <div class="meta-tags"><span>📞 0979 928 969</span></div>
         <a href="https://maps.app.goo.gl/WQ314Na5N141R2tm6" target="_blank" class="btn-map">📍 Bản đồ</a>
       </div>
+      <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd1_5')"></div>
     </div>
 
     <div class="timeline-item backup" data-type="Ăn uống">
@@ -350,6 +490,7 @@
       <div class="item-footer">
         <a href="https://maps.app.goo.gl/S3XWsxs8gbKhmxRa8" target="_blank" class="btn-map">📍 Bản đồ</a>
       </div>
+      <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd2_1')"></div>
     </div>
 
     <div class="timeline-item" data-type="Ăn uống">
@@ -362,6 +503,7 @@
         <div class="meta-tags"><span>📞 0834998585</span></div>
         <a href="https://maps.app.goo.gl/oHEShsfVBGKujhkNA" target="_blank" class="btn-map">📍 Bản đồ</a>
       </div>
+      <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd2_2')"></div>
     </div>
 
     <div class="timeline-item" data-type="Di chuyển">
@@ -381,6 +523,7 @@
       <div class="item-footer">
         <a href="https://maps.app.goo.gl/AhCs3dhNk2Y6ggsz7" target="_blank" class="btn-map">📍 Bản đồ</a>
       </div>
+      <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd2_3')"></div>
     </div>
 
     <div class="timeline-item" data-type="Cà phê">
@@ -392,6 +535,7 @@
       <div class="item-footer">
         <a href="https://maps.app.goo.gl/qnWiecwm1DT2uwKx8" target="_blank" class="btn-map">📍 Bản đồ</a>
       </div>
+      <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd2_4')"></div>
     </div>
 
     <div class="timeline-item" data-type="Ăn uống">
@@ -404,6 +548,7 @@
         <div class="meta-tags"><span>📞 033 220 9899</span></div>
         <a href="https://maps.app.goo.gl/32tWXX7NZCuQb8RT9" target="_blank" class="btn-map">📍 Bản đồ</a>
       </div>
+      <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd2_5')"></div>
     </div>
 
     <div class="timeline-item backup" data-type="Ăn uống">
@@ -426,6 +571,7 @@
       <div class="item-footer">
         <a href="https://maps.app.goo.gl/pUiNMWUFwLYA99yP9" target="_blank" class="btn-map">📍 Bản đồ</a>
       </div>
+      <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd2_6')"></div>
     </div>
 
   </div>
@@ -443,6 +589,7 @@
         <div class="meta-tags"><span>📞 0342.110.868</span></div>
         <a href="https://maps.app.goo.gl/Z4dByzJhraP7a52e9" target="_blank" class="btn-map">📍 Bản đồ</a>
       </div>
+      <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd3_1')"></div>
     </div>
 
     <div class="timeline-item" data-type="Thăm quan">
@@ -454,6 +601,7 @@
       <div class="item-footer">
         <a href="https://maps.app.goo.gl/fN2w3KZNnBykMQBE7" target="_blank" class="btn-map">📍 Bản đồ</a>
       </div>
+      <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd3_2')"></div>
     </div>
 
     <div class="timeline-item" data-type="Di chuyển">
@@ -470,6 +618,7 @@
         <span class="badge badge-pri">Chính</span>
       </div>
       <div class="route">Bếp Mệ Tình</div>
+      <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd3_3')"></div>
     </div>
 
     <div class="timeline-item" data-type="Di chuyển">
@@ -482,31 +631,75 @@
 
   </div>
 
+  <!-- STATS WIDGET -->
+  <div class="stats-widget">
+    <span>💚 Chuyến đi tình yêu Mộc Châu 2026</span>
+    <div class="stats-grid">
+      <div><span class="stat-number">3</span>Ngày 2 đêm</div>
+      <div><span class="stat-number">12+</span>Điểm đến</div>
+      <div><span class="stat-number">∞</span>Kỷ niệm đẹp</div>
+    </div>
+  </div>
+
   <script>
     let currentCategory = 'all';
 
+    // Countdown Logic (Chuyến đi ngày 28/08/2026)
+    function updateCountdown() {
+      const tripDate = new Date("2026-08-28T08:00:00").getTime();
+      const now = new Date().getTime();
+      const diff = tripDate - now;
+
+      if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById("countdown").innerHTML = `⏳ Còn <b>${days} ngày ${hours} giờ</b> nữa là đi thôi em Uyên ơi! 💕`;
+      } else {
+        document.getElementById("countdown").innerHTML = `🍃 Mộc Châu vẫy gọi! Chúc hai đứa mình có chuyến đi tuyệt vời! 🎉`;
+      }
+    }
+    updateCountdown();
+
+    // Mailto Link Generator for em Uyên
+    const mailTo = "lpuyen02@gmail.com";
+    const mailSubject = encodeURIComponent("💌 Lịch trình & Checklist chuyến đi Mộc Châu nè em Uyên ơi!");
+    const mailBody = encodeURIComponent(
+      "Em Uyên ơi,\n\n" +
+      "Chuyến đi Mộc Châu của hai đứa mình đã cận kề rồi đấy! 🍃\n\n" +
+      "Em nhớ kiểm tra và chuẩn bị đầy đủ hành trang nha:\n" +
+      "- 👗 Váy đẹp / Đồ chụp ảnh sống ảo\n" +
+      "- 🧥 Áo khoác mỏng (Mộc Châu buổi tối se lạnh)\n" +
+      "- 🆔 CCCD & Giấy tờ tùy thân\n" +
+      "- 🔋 Sạc dự phòng & Dây sạc\n" +
+      "- 🧴 Kem chống nắng & Xịt chống muỗi\n\n" +
+      "Xem chi tiết lịch trình đầy đủ tại web anh đã chuẩn bị nhé! Chiều anh qua đón em! 💕"
+    );
+    document.getElementById("emailBtn").href = `mailto:${mailTo}?subject=${mailSubject}&body=${mailBody}`;
+
+    // Switch Tab Function
     function switchDay(dayId, btn) {
-      // Toggle Active Tab Button
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
-      // Toggle Tab Content
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
       const activeTab = document.getElementById(dayId);
       activeTab.classList.add('active');
 
-      // Re-apply active category filter for newly opened day
-      applyFilterToTab(activeTab, currentCategory);
+      const filterWrapper = document.getElementById('filterWrapper');
+      if (dayId === 'prep') {
+        filterWrapper.style.display = 'none';
+      } else {
+        filterWrapper.style.display = 'flex';
+        applyFilterToTab(activeTab, currentCategory);
+      }
     }
 
+    // Filter Logic
     function filterCategory(cat, btn) {
       currentCategory = cat;
-      
-      // Toggle Active Filter Chip
       document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
       btn.classList.add('active');
 
-      // Filter items in active tab
       const activeTab = document.querySelector('.tab-content.active');
       applyFilterToTab(activeTab, cat);
     }
@@ -522,6 +715,42 @@
         }
       });
     }
+
+    // Checklist LocalStorage Persistence
+    function saveChecklist() {
+      const state = {};
+      document.querySelectorAll('#checklistContainer input').forEach(cb => {
+        state[cb.getAttribute('data-id')] = cb.checked;
+      });
+      localStorage.setItem('mocchau_checklist', JSON.stringify(state));
+    }
+
+    function loadChecklist() {
+      const saved = localStorage.getItem('mocchau_checklist');
+      if (saved) {
+        const state = JSON.parse(saved);
+        document.querySelectorAll('#checklistContainer input').forEach(cb => {
+          const id = cb.getAttribute('data-id');
+          if (state[id] !== undefined) cb.checked = state[id];
+        });
+      }
+    }
+    loadChecklist();
+
+    // Memory Log LocalStorage Persistence
+    function saveMemory(input, id) {
+      localStorage.setItem('mocchau_mem_' + id, input.value);
+    }
+
+    function loadMemories() {
+      document.querySelectorAll('.memory-input').forEach((input, index) => {
+        // Derive unique key based on position
+        const parentId = input.getAttribute('onchange').match(/'([^']+)'/)[1];
+        const saved = localStorage.getItem('mocchau_mem_' + parentId);
+        if (saved) input.value = saved;
+      });
+    }
+    loadMemories();
   </script>
 </body>
 </html>
