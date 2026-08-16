@@ -10,7 +10,7 @@
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
     </style>
 </head>
-<body class="bg-stone-100 text-stone-800 min-h-screen pb-10">
+<body class="bg-stone-100 text-stone-800 min-h-screen pb-12">
 
     <!-- Header -->
     <header class="bg-emerald-700 text-white p-5 sticky top-0 z-50 shadow-md">
@@ -19,8 +19,8 @@
                 <h1 class="text-xl font-bold tracking-wide">Mộc Châu Trip 🍃</h1>
                 <p class="text-xs text-emerald-200">28/08 - 30/08/2026</p>
             </div>
-            <a href="https://maps.app.goo.gl/Tu3inxeTkAiSeQdv9" target="_blank" class="bg-amber-400 hover:bg-amber-500 text-stone-900 text-xs font-bold py-2 px-3 rounded-full flex items-center gap-1 shadow">
-                <i class="fa-solid fa-map-location-dot"></i> Bản đồ
+            <a href="https://maps.app.goo.gl/Tu3inxeTkAiSeQdv9" target="_blank" class="bg-amber-400 hover:bg-amber-500 text-stone-900 text-xs font-bold py-2 px-3 rounded-full flex items-center gap-1 shadow transition">
+                <i class="fa-solid fa-map-location-dot"></i> Bản đồ tổng
             </a>
         </div>
     </header>
@@ -30,83 +30,208 @@
 
         <!-- Tab Buttons -->
         <div class="flex justify-between bg-stone-200 p-1 rounded-xl shadow-inner text-sm font-semibold">
-            <button onclick="showDay('day1')" id="btn-day1" class="tab-btn flex-1 py-2 rounded-lg text-center bg-white text-emerald-800 shadow">28/08</button>
-            <button onclick="showDay('day2')" id="btn-day2" class="tab-btn flex-1 py-2 rounded-lg text-center text-stone-600">29/08</button>
-            <button onclick="showDay('day3')" id="btn-day3" class="tab-btn flex-1 py-2 rounded-lg text-center text-stone-600">30/08</button>
+            <button onclick="showDay('day1')" id="btn-day1" class="tab-btn flex-1 py-2 rounded-lg text-center bg-white text-emerald-800 shadow transition">28/08 (T5)</button>
+            <button onclick="showDay('day2')" id="btn-day2" class="tab-btn flex-1 py-2 rounded-lg text-center text-stone-600 transition">29/08 (T6)</button>
+            <button onclick="showDay('day3')" id="btn-day3" class="tab-btn flex-1 py-2 rounded-lg text-center text-stone-600 transition">30/08 (T7)</button>
         </div>
 
-        <!-- Day 1 Content -->
+        <!-- DAY 1 (28/08) -->
         <div id="day1" class="day-content space-y-3">
-            <div class="text-xs font-bold text-stone-500 uppercase tracking-wider px-1">Ngày 1 - Check-in & Hoàng Hôn</div>
+            <div class="text-xs font-bold text-stone-500 uppercase tracking-wider px-1">Ngày 1 - Arrival & Hoàng Hôn</div>
             
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 flex justify-between items-start">
-                <div>
-                    <span class="bg-orange-100 text-orange-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Ăn uống</span>
-                    <h3 class="font-bold text-stone-800 mt-1">Bếp Mẹ Tịnh</h3>
-                    <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 14:00 - 15:10 | Từ Mama's house</p>
-                    <p class="text-xs text-stone-400 mt-1"><i class="fa-solid fa-phone"></i> 038 358 9098</p>
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 space-y-2">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="bg-orange-100 text-orange-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Ăn uống</span>
+                        <h3 class="font-bold text-stone-800 mt-1">Bếp Mẹ Tịnh</h3>
+                        <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 14:00 - 15:10</p>
+                    </div>
+                </div>
+                <div class="pt-2 border-t border-stone-100 flex justify-between items-center text-xs">
+                    <a href="tel:0383589098" class="text-stone-600 flex items-center gap-1"><i class="fa-solid fa-phone text-emerald-600"></i> 038 358 9098</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=B%E1%BA%BFp+M%E1%BA%B9+T%E1%BB%8Bnh+M%E1%BB%99c+Ch%C3%A2u" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
+                        <i class="fa-solid fa-diamond-turn-right text-emerald-600"></i> Chỉ đường
+                    </a>
                 </div>
             </div>
 
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 flex justify-between items-start">
-                <div>
-                    <span class="bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Cà phê ✨</span>
-                    <h3 class="font-bold text-stone-800 mt-1">Tiệm Cà Phê Cảnh Cam</h3>
-                    <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 16:40 - 18:40</p>
-                    <p class="text-xs font-medium text-amber-600 mt-1">🔥 Ngồi chơi ngắm hoàng hôn</p>
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 space-y-2">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Cà phê ✨</span>
+                        <h3 class="font-bold text-stone-800 mt-1">Tiệm Cà Phê Cảnh Cam</h3>
+                        <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 16:40 - 18:40</p>
+                        <p class="text-xs font-medium text-amber-600 mt-1">🌅 Ngồi chơi ngắm hoàng hôn</p>
+                    </div>
                 </div>
-                <a href="tel:0386338637" class="text-emerald-600 bg-emerald-50 p-2.5 rounded-full"><i class="fa-solid fa-phone"></i></a>
+                <div class="pt-2 border-t border-stone-100 flex justify-between items-center text-xs">
+                    <a href="tel:0386338637" class="text-stone-600 flex items-center gap-1"><i class="fa-solid fa-phone text-emerald-600"></i> 038 633 8637</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Ti%E1%BB%87m+c%C3%A0+ph%C3%AA+c%E1%BA%A3nh+cam+M%E1%BB%99c+Ch%C3%A2u" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
+                        <i class="fa-solid fa-diamond-turn-right text-emerald-600"></i> Chỉ đường
+                    </a>
+                </div>
             </div>
 
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 flex justify-between items-start">
+            <div class="bg-stone-50 p-4 rounded-2xl border border-dashed border-stone-300 space-y-2 opacity-90">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="bg-stone-200 text-stone-600 text-[10px] font-bold px-2 py-0.5 rounded-full">Backup</span>
+                        <h3 class="font-bold text-stone-700 mt-1">The Lake Coffee</h3>
+                        <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 16:40 - 18:30</p>
+                    </div>
+                </div>
+                <div class="pt-2 border-t border-stone-200 flex justify-between items-center text-xs">
+                    <a href="tel:0945030555" class="text-stone-600 flex items-center gap-1"><i class="fa-solid fa-phone text-emerald-600"></i> 0945 030 555</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=The+Lake+coffee+M%E1%BB%99c+Ch%C3%A2u" target="_blank" class="bg-stone-200 hover:bg-stone-300 text-stone-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
+                        <i class="fa-solid fa-diamond-turn-right"></i> Chỉ đường
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 space-y-2">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="bg-orange-100 text-orange-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Ăn tối</span>
+                        <h3 class="font-bold text-stone-800 mt-1">Cá Hồi Hang Dơi</h3>
+                        <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 19:10 - 21:10</p>
+                    </div>
+                </div>
+                <div class="pt-2 border-t border-stone-100 flex justify-between items-center text-xs">
+                    <a href="tel:0979928969" class="text-stone-600 flex items-center gap-1"><i class="fa-solid fa-phone text-emerald-600"></i> 0979 928 969</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=C%C3%A1+h%E1%BB%93i+hang+d%C6%A1i+M%E1%BB%99c+Ch%C3%A2u" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
+                        <i class="fa-solid fa-diamond-turn-right text-emerald-600"></i> Chỉ đường
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- DAY 2 (29/08) -->
+        <div id="day2" class="day-content space-y-3 hidden">
+            <div class="text-xs font-bold text-stone-500 uppercase tracking-wider px-1">Ngày 2 - Khám Phá & Chill Đêm</div>
+            
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 space-y-2">
+                <div>
+                    <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Tham quan</span>
+                    <h3 class="font-bold text-stone-800 mt-1">Làng Nguyên Thủy Tà Phềnh</h3>
+                    <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 09:00 - 11:10</p>
+                </div>
+                <div class="pt-2 border-t border-stone-100 flex justify-end items-center text-xs">
+                    <a href="https://www.google.com/maps/search/?api=1&query=L%C3%A0ng+Nguy%C3%AAn+th%E1%BB%A7y+T%C3%A0+ph%E1%BB%81nh" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
+                        <i class="fa-solid fa-diamond-turn-right text-emerald-600"></i> Chỉ đường
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 space-y-2">
+                <div>
+                    <span class="bg-orange-100 text-orange-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Ăn trưa</span>
+                    <h3 class="font-bold text-stone-800 mt-1">Tuấn Gù 1</h3>
+                    <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 11:10 - 13:12</p>
+                </div>
+                <div class="pt-2 border-t border-stone-100 flex justify-between items-center text-xs">
+                    <a href="tel:0834998585" class="text-stone-600 flex items-center gap-1"><i class="fa-solid fa-phone text-emerald-600"></i> 0834 998 585</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Nh%C3%A0+h%C3%A0ng+Tu%E1%BA%A5n+G%C3%B9+1+M%E1%BB%99c+Ch%C3%A2u" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
+                        <i class="fa-solid fa-diamond-turn-right text-emerald-600"></i> Chỉ đường
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 space-y-2">
+                <div>
+                    <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Tham quan</span>
+                    <h3 class="font-bold text-stone-800 mt-1">Suối Bản Mòn</h3>
+                    <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 15:32 - 16:42</p>
+                </div>
+                <div class="pt-2 border-t border-stone-100 flex justify-end items-center text-xs">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Su%E1%BB%91i+b%E1%BA%A3n+m%C3%B2n+M%E1%BB%99c+Ch%C3%A2u" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
+                        <i class="fa-solid fa-diamond-turn-right text-emerald-600"></i> Chỉ đường
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 space-y-2">
+                <div>
+                    <span class="bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Cà phê</span>
+                    <h3 class="font-bold text-stone-800 mt-1">Our Own Cfe Prj</h3>
+                    <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 17:22 - 18:37</p>
+                </div>
+                <div class="pt-2 border-t border-stone-100 flex justify-end items-center text-xs">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Our+own+cfe+prj+M%E1%BB%99c+Ch%C3%A2u" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
+                        <i class="fa-solid fa-diamond-turn-right text-emerald-600"></i> Chỉ đường
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 space-y-2">
                 <div>
                     <span class="bg-orange-100 text-orange-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Ăn tối</span>
-                    <h3 class="font-bold text-stone-800 mt-1">Cá Hồi Hang Dơi</h3>
-                    <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 19:10 - 21:10</p>
-                    <p class="text-xs text-stone-400 mt-1"><i class="fa-solid fa-phone"></i> 0979 928 969</p>
+                    <h3 class="font-bold text-stone-800 mt-1">Đá Cfe & BBQ</h3>
+                    <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 18:37 - 20:12</p>
+                </div>
+                <div class="pt-2 border-t border-stone-100 flex justify-between items-center text-xs">
+                    <a href="tel:0332209899" class="text-stone-600 flex items-center gap-1"><i class="fa-solid fa-phone text-emerald-600"></i> 033 220 9899</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=%C4%90%C3%A1+cfe+and+BBQ+M%E1%BB%99c+Ch%C3%A2u" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
+                        <i class="fa-solid fa-diamond-turn-right text-emerald-600"></i> Chỉ đường
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 space-y-2">
+                <div>
+                    <span class="bg-indigo-100 text-indigo-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Dạo chơi</span>
+                    <h3 class="font-bold text-stone-800 mt-1">Chợ Đêm Mộc Châu</h3>
+                    <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 20:12 - 21:22</p>
+                </div>
+                <div class="pt-2 border-t border-stone-100 flex justify-end items-center text-xs">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Ch%C6%A1+d%C3%AA%CC%82m+M%C3%B4%CC%82c+Cha%CC%82u" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
+                        <i class="fa-solid fa-diamond-turn-right text-emerald-600"></i> Chỉ đường
+                    </a>
                 </div>
             </div>
         </div>
 
-        <!-- Day 2 Content -->
-        <div id="day2" class="day-content space-y-3 hidden">
-            <div class="text-xs font-bold text-stone-500 uppercase tracking-wider px-1">Ngày 2 - Khám Phá & Chợ Đêm</div>
-            
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200">
-                <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Tham quan</span>
-                <h3 class="font-bold text-stone-800 mt-1">Làng Nguyên Thủy Tà Phềnh</h3>
-                <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 09:00 - 11:10</p>
-            </div>
-
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200">
-                <span class="bg-orange-100 text-orange-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Ăn trưa</span>
-                <h3 class="font-bold text-stone-800 mt-1">Tuấn Gù 1</h3>
-                <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 11:10 - 13:12</p>
-                <p class="text-xs text-stone-400 mt-1"><i class="fa-solid fa-phone"></i> 0834 998 585</p>
-            </div>
-
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200">
-                <span class="bg-indigo-100 text-indigo-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Chợ đêm</span>
-                <h3 class="font-bold text-stone-800 mt-1">Chợ Đêm Mộc Châu</h3>
-                <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 21:22 - Buổi tối</p>
-            </div>
-        </div>
-
-        <!-- Day 3 Content -->
+        <!-- DAY 3 (30/08) -->
         <div id="day3" class="day-content space-y-3 hidden">
-            <div class="text-xs font-bold text-stone-500 uppercase tracking-wider px-1">Ngày 3 - Check-out & Rời Mộc Châu</div>
+            <div class="text-xs font-bold text-stone-500 uppercase tracking-wider px-1">Ngày 3 - Check-out & Về Hà Nội</div>
             
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200">
-                <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Trải nghiệm</span>
-                <h3 class="font-bold text-stone-800 mt-1">Lam Sơn Farm (Hái nho)</h3>
-                <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 08:52 - 09:47</p>
-                <p class="text-xs text-stone-400 mt-1"><i class="fa-solid fa-phone"></i> 0342 110 868</p>
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 space-y-2">
+                <div>
+                    <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Trải nghiệm</span>
+                    <h3 class="font-bold text-stone-800 mt-1">Lam Sơn Farm (Hái nho)</h3>
+                    <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 08:52 - 09:47</p>
+                </div>
+                <div class="pt-2 border-t border-stone-100 flex justify-between items-center text-xs">
+                    <a href="tel:0342110868" class="text-stone-600 flex items-center gap-1"><i class="fa-solid fa-phone text-emerald-600"></i> 0342 110 868</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Lam+s%C6%A1n+farm+M%E1%BB%99c+Ch%C3%A2u" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
+                        <i class="fa-solid fa-diamond-turn-right text-emerald-600"></i> Chỉ đường
+                    </a>
+                </div>
             </div>
 
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200">
-                <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Tham quan</span>
-                <h3 class="font-bold text-stone-800 mt-1">Đồi Thông Bản Áng</h3>
-                <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 09:47 - 10:42</p>
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 space-y-2">
+                <div>
+                    <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Tham quan</span>
+                    <h3 class="font-bold text-stone-800 mt-1">Đồi Thông Bản Áng</h3>
+                    <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 09:47 - 10:42</p>
+                </div>
+                <div class="pt-2 border-t border-stone-100 flex justify-end items-center text-xs">
+                    <a href="https://www.google.com/maps/search/?api=1&query=%C4%90%E1%BB%93i+th%C3%B4ng+b%E1%BA%A3n+%C3%81ng+M%E1%BB%99c+Ch%C3%A2u" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
+                        <i class="fa-solid fa-diamond-turn-right text-emerald-600"></i> Chỉ đường
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 space-y-2">
+                <div>
+                    <span class="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Homestay</span>
+                    <h3 class="font-bold text-stone-800 mt-1">Mama's House (Check-out)</h3>
+                    <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 10:42 - 11:47</p>
+                </div>
+                <div class="pt-2 border-t border-stone-100 flex justify-end items-center text-xs">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Mama%27s+house+homestay+M%E1%BB%99c+Ch%C3%A2u" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
+                        <i class="fa-solid fa-diamond-turn-right text-emerald-600"></i> Chỉ đường
+                    </a>
+                </div>
             </div>
         </div>
 
