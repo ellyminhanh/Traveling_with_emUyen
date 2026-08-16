@@ -7,14 +7,17 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --bg-primary: #ffffff;
-      --bg-card: #ffffff;
-      --border-color: #f0f0f0;
-      --text-main: #000000;
-      --text-muted: #737373;
-      --accent-color: #000000;
-      --like-color: #ff3040;
-      --radius: 16px;
+      --bg-primary: #F7F9F6;
+      --bg-card: #FFFFFF;
+      --accent-sage: #5B8266;
+      --accent-sage-light: #EBF1EC;
+      --accent-beige: #F3EFE0;
+      --accent-beige-dark: #D3C2A3;
+      --border-color: #E2E8E0;
+      --text-main: #2C3E35;
+      --text-muted: #708275;
+      --like-color: #E74C3C;
+      --radius: 18px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -43,13 +46,13 @@
       border-bottom: 1px solid var(--border-color);
       position: sticky;
       top: 0;
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(247, 249, 246, 0.92);
       backdrop-filter: blur(10px);
       z-index: 100;
     }
-    .brand-title { font-size: 0.95rem; font-weight: 800; letter-spacing: -0.3px; }
+    .brand-title { font-size: 0.95rem; font-weight: 800; color: var(--accent-sage); letter-spacing: -0.3px; }
     .social-links { display: flex; gap: 16px; align-items: center; }
-    .social-btn { color: var(--text-main); font-size: 1.25rem; text-decoration: none; }
+    .social-btn { color: var(--accent-sage); font-size: 1.25rem; text-decoration: none; }
 
     /* HEADER */
     .app-header {
@@ -60,30 +63,30 @@
     }
     .profile-badge { display: inline-flex; align-items: center; gap: 8px; }
     .avatar {
-      width: 34px; height: 34px; border-radius: 50%; background: #000;
+      width: 36px; height: 36px; border-radius: 50%; background: var(--accent-sage);
       color: #fff; display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: 13px;
+      font-weight: 800; font-size: 14px; box-shadow: 0 2px 6px rgba(91, 130, 102, 0.2);
     }
     .app-header h1 { font-size: 1.15rem; font-weight: 800; color: var(--text-main); }
     .countdown-box {
-      background: #f7f7f7; border: 1px solid var(--border-color);
+      background: var(--accent-beige); border: 1px solid var(--accent-beige-dark);
       border-radius: 20px; display: inline-block; padding: 4px 12px;
-      margin-top: 6px; font-size: 0.72rem; font-weight: 600;
+      margin-top: 6px; font-size: 0.72rem; font-weight: 600; color: #5C5240;
     }
 
     /* TAB NAVIGATION */
     .day-tabs {
-      display: flex; background: #f7f7f7; border: 1px solid var(--border-color);
-      padding: 4px; border-radius: 14px; margin-bottom: 12px; gap: 2px;
+      display: flex; background: #EAEFEA; border: 1px solid var(--border-color);
+      padding: 4px; border-radius: 16px; margin-bottom: 12px; gap: 2px;
     }
     .tab-btn {
       flex: 1; padding: 7px 2px; border: none; background: transparent;
-      border-radius: 10px; font-size: 0.75rem; font-weight: 700;
+      border-radius: 12px; font-size: 0.75rem; font-weight: 700;
       color: var(--text-muted); cursor: pointer; text-align: center;
       transition: all 0.2s;
     }
-    .tab-btn small { display: block; font-size: 0.62rem; font-weight: 500; }
-    .tab-btn.active { background: #ffffff; color: var(--text-main); box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+    .tab-btn small { display: block; font-size: 0.62rem; font-weight: 500; opacity: 0.8; }
+    .tab-btn.active { background: #ffffff; color: var(--accent-sage); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
 
     /* CATEGORY FILTER */
     .filter-wrapper {
@@ -96,7 +99,7 @@
       background: #fff; border: 1px solid var(--border-color);
       font-size: 0.73rem; font-weight: 600; color: var(--text-muted); cursor: pointer;
     }
-    .chip.active { background: #000; color: #fff; border-color: #000; }
+    .chip.active { background: var(--accent-sage); color: #fff; border-color: var(--accent-sage); }
 
     /* TAB CONTENT */
     .tab-content { display: none; }
@@ -106,39 +109,40 @@
     .timeline-item {
       background: var(--bg-card); border-radius: var(--radius);
       padding: 14px; margin-bottom: 10px; border: 1px solid var(--border-color);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
     }
-    .timeline-item.backup { background: #fafafa; border: 1px dashed #e0e0e0; }
+    .timeline-item.backup { background: #FAF9F5; border: 1px dashed var(--accent-beige-dark); }
     .item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-    .time { font-size: 0.75rem; font-weight: 700; background: rgba(0,0,0,0.05); padding: 2px 8px; border-radius: 6px; }
+    .time { font-size: 0.75rem; font-weight: 700; background: var(--accent-sage-light); color: var(--accent-sage); padding: 2px 8px; border-radius: 6px; }
     .badge { font-size: 0.62rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; }
-    .badge-pri { background: #000; color: #fff; }
-    .badge-backup { background: #eee; color: #666; }
+    .badge-pri { background: var(--accent-sage); color: #fff; }
+    .badge-backup { background: var(--accent-beige); color: #736248; }
     .route { font-size: 0.92rem; font-weight: 600; margin-bottom: 6px; }
-    .arrow { color: #888; font-weight: normal; margin: 0 4px; }
+    .arrow { color: var(--accent-sage); font-weight: normal; margin: 0 4px; }
     .item-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; padding-top: 6px; border-top: 1px solid var(--border-color); font-size: 0.73rem; color: var(--text-muted); }
-    .btn-map { padding: 4px 10px; background: #000; color: #fff; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 0.7rem; }
+    .btn-map { padding: 4px 10px; background: var(--accent-sage); color: #fff; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 0.7rem; }
 
     /* THREADS / INSTAGRAM DIARY TAB */
     .diary-composer {
       background: #fff; border: 1px solid var(--border-color); border-radius: var(--radius);
-      padding: 14px; margin-bottom: 16px;
+      padding: 14px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);
     }
     .composer-header { display: flex; gap: 10px; align-items: center; margin-bottom: 10px; }
     .composer-input {
       width: 100%; border: none; outline: none; font-size: 0.88rem;
-      resize: none; font-family: inherit; color: var(--text-main);
+      resize: none; font-family: inherit; color: var(--text-main); background: transparent;
     }
-    .composer-actions { display: flex; justify-content: space-between; align-items: center; pt-8; border-top: 1px solid var(--border-color); padding-top: 8px; }
-    .btn-attach { color: var(--text-muted); font-size: 1.1rem; cursor: pointer; }
-    .btn-post { background: #000; color: #fff; border: none; padding: 6px 14px; border-radius: 16px; font-weight: 700; font-size: 0.75rem; cursor: pointer; }
+    .composer-actions { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 8px; }
+    .btn-attach { color: var(--accent-sage); font-size: 1.15rem; cursor: pointer; }
+    .btn-post { background: var(--accent-sage); color: #fff; border: none; padding: 6px 14px; border-radius: 16px; font-weight: 700; font-size: 0.75rem; cursor: pointer; }
     
     .threads-post {
       background: #fff; border: 1px solid var(--border-color); border-radius: var(--radius);
-      padding: 14px; margin-bottom: 12px;
+      padding: 14px; margin-bottom: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.02);
     }
-    .post-author { display: flex; items-center; gap: 10px; margin-bottom: 8px; }
+    .post-author { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
     .author-info { flex: 1; }
-    .author-name { font-size: 0.85rem; font-weight: 700; }
+    .author-name { font-size: 0.85rem; font-weight: 700; color: var(--text-main); }
     .post-time { font-size: 0.7rem; color: var(--text-muted); }
     .post-content { font-size: 0.88rem; line-height: 1.4; margin-bottom: 10px; white-space: pre-line; }
     .post-img { width: 100%; max-height: 280px; object-fit: cover; border-radius: 12px; margin-bottom: 10px; display: none; }
@@ -149,15 +153,16 @@
 
     /* PREP & CHECKLIST */
     .prep-card { background: #fff; border-radius: var(--radius); padding: 14px; margin-bottom: 10px; border: 1px solid var(--border-color); }
-    .prep-card h3 { font-size: 0.9rem; margin-bottom: 8px; }
+    .prep-card h3 { font-size: 0.9rem; margin-bottom: 8px; color: var(--accent-sage); }
     .checklist-item { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--border-color); font-size: 0.82rem; }
     .checklist-item:last-child { border-bottom: none; }
-    .btn-email { display: block; width: 100%; text-align: center; background: #000; color: #fff; padding: 9px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 0.8rem; margin-top: 8px; }
+    .checklist-item input[type="checkbox"] { accent-color: var(--accent-sage); }
+    .btn-email { display: block; width: 100%; text-align: center; background: var(--accent-sage); color: #fff; padding: 9px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 0.8rem; margin-top: 8px; }
 
     /* STATS FOOTER */
     .stats-widget { background: #fff; border-radius: var(--radius); padding: 12px; margin-top: 16px; text-align: center; border: 1px solid var(--border-color); font-size: 0.75rem; color: var(--text-muted); }
     .stats-grid { display: flex; justify-content: space-around; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border-color); }
-    .stat-number { font-size: 1rem; font-weight: 800; color: var(--text-main); display: block; }
+    .stat-number { font-size: 1rem; font-weight: 800; color: var(--accent-sage); display: block; }
   </style>
 </head>
 <body>
@@ -165,7 +170,7 @@
   <div class="container">
     <!-- TOP BAR -->
     <div class="top-social-bar">
-      <div class="brand-title">Mộc Châu Trip</div>
+      <div class="brand-title">🌿 Mộc Châu Trip</div>
       <div class="social-links">
         <a href="https://www.threads.net" target="_blank" class="social-btn" title="Threads"><i class="fa-brands fa-threads"></i></a>
         <a href="https://www.instagram.com" target="_blank" class="social-btn" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -350,7 +355,6 @@
 
     <!-- TAB NHẬT KÝ (THREADS & INSTAGRAM STYLE) -->
     <div id="diary" class="tab-content">
-      <!-- Form viết bài -->
       <div class="diary-composer">
         <div class="composer-header">
           <div class="avatar">U</div>
@@ -364,7 +368,6 @@
         <img id="imgPreview" style="width:100%; max-height:180px; object-fit:cover; border-radius:10px; margin-top:10px; display:none;">
       </div>
 
-      <!-- Feed bài đăng -->
       <div id="diaryFeed"></div>
     </div>
 
@@ -471,7 +474,6 @@
     }
     loadChecklist();
 
-    /* XỬ LÝ ĐĂNG BÀI NHẬT KÝ THREADS */
     function handleImageSelect(event) {
       const file = event.target.files[0];
       if (file) {
