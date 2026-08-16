@@ -2,39 +2,554 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Lịch Trình Mộc Châu</title>
   <style>
     :root {
-      --bg-main: #f8fafc;
+      --bg: #f4f6f3;                  /* Misty Fog / Sương núi */
       --card-bg: #ffffff;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --primary-color: #2563eb;
-      --primary-light: #eff6ff;
-      --border-color: #e2e8f0;
-      --pri-badge-bg: #dcfce7;
-      --pri-badge-text: #166534;
-      --backup-badge-bg: #fef3c7;
-      --backup-badge-text: #92400e;
-      --radius: 12px;
-      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --text: #1c2826;                /* Dark Forest / Rừng đêm */
+      --subtext: #607274;             /* Sage Gray / Ghi xám chè */
+      --primary: #2d5a27;             /* Mộc Châu Tea Green / Xanh đồi trà */
+      --primary-soft: #eaf2eb;        /* Soft Tea Tint */
+      --warm-wood: #8c6d53;           /* Homestay Wood / Nâu gỗ */
+      --backup-bg: #fdfbf7;
+      --backup-border: #e6dfd5;
+      --radius: 16px;
+      --shadow: 0 4px 14px rgba(45, 90, 39, 0.05);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     body {
-      background-color: var(--bg-main);
-      color: var(--text-main);
+      background-color: var(--bg);
+      color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      padding: 20px 16px;
-      line-height: 1.5;
+      padding: 16px;
+      padding-bottom: 40px;
     }
 
-    .container {
-      max-width: 760px;
-      margin: 0 auto;
+    .app-header {
+      text-align: center;
+      margin: 8px 0 16px;
+    }
+    .app-header h1 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+    .app-header p {
+      font-size: 0.8rem;
+      color: var(--subtext);
+      margin-top: 2px;
     }
 
+    /* Horizontal Filter Scroll */
+    .filter-wrapper {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+      scrollbar-width: none;
+    }
+    .filter-wrapper::-webkit-scrollbar { display: none; }
+    
+    .chip {
+      flex: 0 0 auto;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--subtext);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .chip.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 2px 6px rgba(45, 90, 39, 0.2);
+    }
+
+    /* Accordion Day Container */
+    .day-accordion {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      margin-bottom: 14px;
+      box-shadow: var(--shadow);
+      border: 1px solid #ebd3c8;
+      border: 1px solid rgba(45, 90, 39, 0.08);
+      overflow: hidden;
+    }
+
+    .day-header {
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      background: #ffffff;
+      user-select: none;
+    }
+    .day-header-info h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .day-header-info p {
+      font-size: 0.78rem;
+      color: var(--subtext);
+      margin-top: 2px;
+    }
+    .toggle-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--primary-soft);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      transition: transform 0.3s ease;
+    }
+    .day-accordion.open .toggle-icon {
+      transform: rotate(180deg);
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .day-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0, 1, 0, 1);
+      background: #fdfdfd;
+      padding: 0 12px;
+    }
+    .day-accordion.open .day-content {
+      max-height: 3000px;
+      padding: 4px 12px 14px 12px;
+    }
+
+    /* Timeline Cards */
+    .timeline-item {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-top: 10px;
+      border: 1px solid #f0f2f0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+      position: relative;
+    }
+    .timeline-item.backup {
+      background: var(--backup-bg);
+      border: 1px dashed var(--backup-border);
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .time {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--warm-wood);
+      background: #f7f3ef;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .badge-pri { background: var(--primary-soft); color: var(--primary); }
+    .badge-backup { background: #fef3c7; color: #b45309; }
+
+    .route {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .arrow { color: #a3b18a; font-weight: normal; margin: 0 4px; }
+
+    .item-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      padding-top: 6px;
+      border-top: 1px solid #f4f5f4;
+      font-size: 0.78rem;
+      color: var(--subtext);
+    }
+    .meta-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    
+    .btn-map {
+      padding: 4px 10px;
+      background: var(--primary);
+      color: #ffffff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-header">
+    <h1>🍃 Mộc Châu Autumn Trip</h1>
+    <p>Chuyến đi sương mù & đồi trà</p>
+  </div>
+
+  <!-- Thanh Filter cuộn ngang -->
+  <div class="filter-wrapper">
+    <button class="chip active" onclick="filterCategory('all', this)">Tất cả</button>
+    <button class="chip" onclick="filterCategory('Di chuyển', this)">🚗 Di chuyển</button>
+    <button class="chip" onclick="filterCategory('Ăn uống', this)">🍽️ Ăn uống</button>
+    <button class="chip" onclick="filterCategory('Cà phê', this)">☕ Cà phê</button>
+    <button class="chip" onclick="filterCategory('Thăm quan', this)">🏞️ Tham quan</button>
+    <button class="chip" onclick="filterCategory('Nghỉ ngơi', this)">🏡 Nghỉ ngơi</button>
+  </div>
+
+  <!-- NGÀY 1 (Default Open) -->
+  <div class="day-accordion open">
+    <div class="day-header" onclick="toggleDay(this)">
+      <div class="day-header-info">
+        <h2>📅 Ngày 1 - 28/08/2026</h2>
+        <p>Hà Nội ➔ Mộc Châu (Di chuyển & Cà phê)</p>
+      </div>
+      <div class="toggle-icon">▼</div>
+    </div>
+    <div class="day-content">
+
+      <div class="timeline-item" data-type="Di chuyển">
+        <div class="item-header">
+          <span class="time">08:00 - 08:50</span>
+          <span class="badge badge-pri">Chính</span>
+        </div>
+        <div class="route">Nhà <span class="arrow">➔</span> Bến xe Mỹ Đình</div>
+        <div class="item-footer">
+          <div class="meta-tags"><span>📞 098 155 95 51</span></div>
+          <a href="https://maps.app.goo.gl/GpWkKJd15ohjQPEr8" target="_blank" class="btn-map">📍 Bản đồ</a>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-type="Di chuyển">
+        <div class="item-header">
+          <span class="time">08:50 - 14:00</span>
+          <span class="badge badge-pri">Chính</span>
+        </div>
+        <div class="route">Bến xe Mỹ Đình <span class="arrow">➔</span> Mama's house</div>
+        <div class="item-footer">
+          <div class="meta-tags"><span>📞 0989956390</span></div>
+          <a href="https://maps.app.goo.gl/NGqFKCkKH2YcpCLJ7" target="_blank" class="btn-map">📍 Bản đồ</a>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-type="Ăn uống">
+        <div class="item-header">
+          <span class="time">14:00 - 15:10</span>
+          <span class="badge badge-pri">Chính</span>
+        </div>
+        <div class="route">Mama's house <span class="arrow">➔</span> Nhà Cuối Ngõ</div>
+        <div class="item-footer">
+          <div class="meta-tags"><span>📞 092.738.8668</span></div>
+          <a href="https://maps.app.goo.gl/jcFrYGMfsGsmyk8w6" target="_blank" class="btn-map">📍 Bản đồ</a>
+        </div>
+      </div>
+
+      <div class="timeline-item backup" data-type="Ăn uống">
+        <div class="item-header">
+          <span class="time">14:00 - 15:10</span>
+          <span class="badge badge-backup">Dự phòng</span>
+        </div>
+        <div class="route">Mama's house <span class="arrow">➔</span> Bếp Mệ Tình</div>
+        <div class="item-footer">
+          <div class="meta-tags"><span>📞 038 358 9098</span></div>
+          <a href="https://maps.app.goo.gl/u1QSG4SYmF5owGfZ7" target="_blank" class="btn-map">📍 Bản đồ</a>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-type="Nghỉ ngơi">
+        <div class="item-header">
+          <span class="time">15:10 - 16:40</span>
+          <span class="badge badge-pri">Chính</span>
+        </div>
+        <div class="route">Bếp Mệ Tình <span class="arrow">➔</span> Mama's house</div>
+      </div>
+
+      <div class="timeline-item" data-type="Cà phê">
+        <div class="item-header">
+          <span class="time">16:40 - 18:40</span>
+          <span class="badge badge-pri">Chính</span>
+        </div>
+        <div class="route">Tiệm cà phê cánh cam</div>
+        <div class="item-footer">
+          <div class="meta-tags"><span>📝 Ngắm hoàng hôn</span></div>
+          <a href="https://maps.app.goo.gl/5VFQMaEFukfvgJat9" target="_blank" class="btn-map">📍 Bản đồ</a>
+        </div>
+      </div>
+
+      <div class="timeline-item backup" data-type="Cà phê">
+        <div class="item-header">
+          <span class="time">16:40 - 18:30</span>
+          <span class="badge badge-backup">Dự phòng</span>
+        </div>
+        <div class="route">The Lake coffee</div>
+        <div class="item-footer">
+          <div class="meta-tags"><span>📞 0945030555</span></div>
+          <a href="https://maps.app.goo.gl/pSLwPNZVzND6ymjD6" target="_blank" class="btn-map">📍 Bản đồ</a>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-type="Di chuyển">
+        <div class="item-header">
+          <span class="time">18:40 - 19:10</span>
+          <span class="badge badge-pri">Chính</span>
+        </div>
+        <div class="route">Cà phê cánh cam <span class="arrow">➔</span> Mộc Châu foodstore</div>
+        <div class="item-footer">
+          <a href="https://maps.app.goo.gl/SEnBmyqHsqBp3m5T8" target="_blank" class="btn-map">📍 Bản đồ</a>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-type="Ăn uống">
+        <div class="item-header">
+          <span class="time">19:10 - 21:10</span>
+          <span class="badge badge-pri">Chính</span>
+        </div>
+        <div class="route">Cá hồi hang dơi</div>
+        <div class="item-footer">
+          <div class="meta-tags"><span>📞 0979 928 969</span></div>
+          <a href="https://maps.app.goo.gl/WQ314Na5N141R2tm6" target="_blank" class="btn-map">📍 Bản đồ</a>
+        </div>
+      </div>
+
+      <div class="timeline-item backup" data-type="Ăn uống">
+        <div class="item-header">
+          <span class="time">19:10 - 20:30</span>
+          <span class="badge badge-backup">Dự phòng</span>
+        </div>
+        <div class="route">Lẩu sườn bò kim chi (Nguyệt Anh Quán)</div>
+        <div class="item-footer">
+          <div class="meta-tags"><span>📞 032 741 0051</span></div>
+          <a href="https://maps.app.goo.gl/zAXSEx8iNyDdD2ez7" target="_blank" class="btn-map">📍 Bản đồ</a>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-type="Nghỉ ngơi">
+        <div class="item-header">
+          <span class="time">21:10 - 00:20</span>
+          <span class="badge badge-pri">Chính</span>
+        </div>
+        <div class="route">Trở về Mama's house nghỉ ngơi</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- NGÀY 2 -->
+  <div class="day-accordion">
+    <div class="day-header" onclick="toggleDay(this)">
+      <div class="day-header-info">
+        <h2>📅 Ngày 2 - 29/08/2026</h2>
+        <p>Làng Nguyên Thủy & Suối Bản Mòn & BBQ</p>
+      </div>
+      <div class="toggle-icon">▼</div>
+    </div>
+    <div class="day-content">
+
+      <div class="timeline-item" data-type="Thăm quan">
+        <div class="item-header">
+          <span class="time">09:00 - 11:10</span>
+          <span class="badge badge-pri">Chính</span>
+        </div>
+        <div class="route">Làng Nguyên thủy Tà phềnh</div>
+        <div class="item-footer">
+          <a href="https://maps.app.goo.gl/S3XWsxs8gbKhmxRa8" target="_blank" class="btn-map">📍 Bản đồ</a>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-type="Ăn uống">
+        <div class="item-header">
+          <span class="time">11:10 - 13:12</span>
+          <span class="badge badge-pri">Chính</span>
+        </div>
+        <div class="route">Nhà hàng Tuân gù 1</div>
+        <div class="item-footer">
+          <div class="meta-tags"><span>📞 0834998585</span></div>
+          <a href="https://maps.app.goo.gl/oHEShsfVBGKujhkNA" target="_blank" class="btn-map">📍 Bản đồ</a>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-type="Di chuyển">
+        <div class="item-header">
+          <span class="time">13:12 - 15:32</span>
+          <span class="badge badge-pri">Chính</span>
+        </div>
+        <div class="route">Tuân gù 1 <span class="arrow">➔</span> Mama's house</div>
+      </div>
+
+      <div class="timeline-item" data-type="Thăm quan">
+        <div class="item-header">
+          <span class="time">15:32 - 16:42</span>
+          <span class="badge badge-pri">Chính</span>
+        </div>
+        <div class="route">Suối bản mòn</div>
+        <div class="item-footer">
+          <a href="https://maps.app.goo.gl/AhCs3dhNk2Y6ggsz7" target="_blank" class="btn-map">📍 Bản đồ</a>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-type="Cà phê">
+        <div class="item-header">
+          <span class="time">17:22 - 18:37</span>
+          <span class="badge badge-pri">Chính</span>
+        </div>
+        <div class="route">Our own cfe prj</div>
+        <div class="item-footer">
+          <a href="https://maps.app.goo.gl/qnWiecwm1DT2uwKx8" target="_blank" class="btn-map">📍 Bản đồ</a>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-type="Ăn uống">
+        <div class="item-header">
+          <span class="time">18:37 - 20:12</span>
+          <span class="badge badge-pri">Chính</span>
+        </div>
+        <div class="route">Đá cfe and BBQ</div>
+        <div class="item-footer">
+          <div class="meta-tags"><span>📞 033 220 9899</span></div>
+          <a href="https://maps.app.goo.gl/32tWXX7NZCuQb8RT9" target="_blank" class="btn-map">📍 Bản đồ</a>
+        </div>
+      </div>
+
+      <div class="timeline-item backup" data-type="Ăn uống">
+        <div class="item-header">
+          <span class="time">18:37 - 20:17</span>
+          <span class="badge badge-backup">Dự phòng</span>
+        </div>
+        <div class="route">Kua nướng</div>
+        <div class="item-footer">
+          <a href="https://maps.app.goo.gl/HY4SUEta6Kd7ES937" target="_blank" class="btn-map">📍 Bản đồ</a>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-type="Ăn uống">
+        <div class="item-header">
+          <span class="time">20:12 - 21:22</span>
+          <span class="badge badge-pri">Chính</span>
+        </div>
+        <div class="route">Chợ đêm Mộc Châu</div>
+        <div class="item-footer">
+          <a href="https://maps.app.goo.gl/pUiNMWUFwLYA99yP9" target="_blank" class="btn-map">📍 Bản đồ</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- NGÀY 3 -->
+  <div class="day-accordion">
+    <div class="day-header" onclick="toggleDay(this)">
+      <div class="day-header-info">
+        <h2>📅 Ngày 3 - 30/08/2026</h2>
+        <p>Hái Nho & Đồi Thông & Trở Về Hà Nội</p>
+      </div>
+      <div class="toggle-icon">▼</div>
+    </div>
+    <div class="day-content">
+
+      <div class="timeline-item" data-type="Thăm quan">
+        <div class="item-header">
+          <span class="time">08:52 - 09:47</span>
+          <span class="badge badge-pri">Chính</span>
+        </div>
+        <div class="route">Lam sơn farm (Hái nho)</div>
+        <div class="item-footer">
+          <div class="meta-tags"><span>📞 0342.110.868</span></div>
+          <a href="https://maps.app.goo.gl/Z4dByzJhraP7a52e9" target="_blank" class="btn-map">📍 Bản đồ</a>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-type="Thăm quan">
+        <div class="item-header">
+          <span class="time">09:47 - 10:42</span>
+          <span class="badge badge-pri">Chính</span>
+        </div>
+        <div class="route">Đồi thông bản Áng</div>
+        <div class="item-footer">
+          <a href="https://maps.app.goo.gl/fN2w3KZNnBykMQBE7" target="_blank" class="btn-map">📍 Bản đồ</a>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-type="Di chuyển">
+        <div class="item-header">
+          <span class="time">10:42 - 11:47</span>
+          <span class="badge badge-pri">Chính</span>
+        </div>
+        <div class="route">Mama's house (Pack đồ checkout)</div>
+      </div>
+
+      <div class="timeline-item" data-type="Ăn uống">
+        <div class="item-header">
+          <span class="time">11:47 - 12:57</span>
+          <span class="badge badge-pri">Chính</span>
+        </div>
+        <div class="route">Bếp Mệ Tình</div>
+      </div>
+
+      <div class="timeline-item" data-type="Di chuyển">
+        <div class="item-header">
+          <span class="time">12:57 ➔ Về Hà Nội</span>
+          <span class="badge badge-pri">Chính</span>
+        </div>
+        <div class="route">Bếp Mệ Tình <span class="arrow">➔</span> Nhà (Hà Nội)</div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function toggleDay(header) {
+      const accordion = header.parentElement;
+      accordion.classList.toggle('open');
+    }
+
+    function filterCategory(cat, btn) {
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+
+      const items = document.querySelectorAll('.timeline-item');
+      items.forEach(item => {
+        const type = item.getAttribute('data-type');
+        if (cat === 'all' || type === cat) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      if (cat !== 'all') {
+        document.querySelectorAll('.day-accordion').forEach(a => a.classList.add('open'));
+      }
+    }
+  </script>
+</body>
+</html>
     .header {
       margin-bottom: 20px;
       text-align: center;
