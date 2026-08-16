@@ -1,256 +1,391 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mộc Châu Trip 2026 🌿</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-    </style>
-</head>
-<body class="bg-stone-100 text-stone-800 min-h-screen pb-12">
+<style>
+  .itinerary-container {
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #1e293b;
+  }
+  .day-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 24px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #e2e8f0;
+    color: #0f172a;
+  }
+  .schedule-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .schedule-card.backup {
+    background: #f8fafc;
+    border-style: dashed;
+    border-color: #cbd5e1;
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  .time-badge {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #475569;
+    background: #f1f5f9;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .type-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+  .type-pri {
+    background: #dcfce7;
+    color: #15803d;
+  }
+  .type-backup {
+    background: #fef3c7;
+    color: #b45309;
+  }
+  .location-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 4px 0;
+  }
+  .meta-info {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-top: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+  .map-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    background-color: #eff6ff;
+    color: #2563eb;
+    border: 1px solid #bfdbfe;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+  }
+  .map-btn:hover {
+    background-color: #dbeafe;
+  }
+</style>
 
-    <!-- Header -->
-    <header class="bg-emerald-700 text-white p-5 sticky top-0 z-50 shadow-md">
-        <div class="max-w-md mx-auto flex justify-between items-center">
-            <div>
-                <h1 class="text-xl font-bold tracking-wide">Mộc Châu Trip 🍃</h1>
-                <p class="text-xs text-emerald-200">28/08 - 30/08/2026</p>
-            </div>
-            <a href="https://maps.app.goo.gl/Tu3inxeTkAiSeQdv9" target="_blank" class="bg-amber-400 hover:bg-amber-500 text-stone-900 text-xs font-bold py-2 px-3 rounded-full flex items-center gap-1 shadow transition">
-                <i class="fa-solid fa-map-location-dot"></i> Bản đồ tổng
-            </a>
-        </div>
-    </header>
+<div class="itinerary-container">
 
-    <!-- Main Container -->
-    <main class="max-w-md mx-auto p-4 space-y-6">
+  <!-- NGÀY 28/08/2026 -->
+  <div class="day-title">📅 Ngày 28/08/2026</div>
 
-        <!-- Tab Buttons -->
-        <div class="flex justify-between bg-stone-200 p-1 rounded-xl shadow-inner text-sm font-semibold">
-            <button onclick="showDay('day1')" id="btn-day1" class="tab-btn flex-1 py-2 rounded-lg text-center bg-white text-emerald-800 shadow transition">28/08 (T5)</button>
-            <button onclick="showDay('day2')" id="btn-day2" class="tab-btn flex-1 py-2 rounded-lg text-center text-stone-600 transition">29/08 (T6)</button>
-            <button onclick="showDay('day3')" id="btn-day3" class="tab-btn flex-1 py-2 rounded-lg text-center text-stone-600 transition">30/08 (T7)</button>
-        </div>
+  <div class="schedule-card">
+    <div class="card-header">
+      <span class="time-badge">08:00 - 08:50</span>
+      <span class="type-badge type-pri">⭐ Primary</span>
+    </div>
+    <div class="location-title">🚀 Di chuyển: Nhà ➔ Bến xe Mỹ Đình</div>
+    <div class="meta-info">
+      <span>📞 098 155 95 51</span>
+      <a href="https://maps.app.goo.gl/GpWkKJd15ohjQPEr8" target="_blank" class="map-btn">📍 Google Maps</a>
+    </div>
+  </div>
 
-        <!-- DAY 1 (28/08) -->
-        <div id="day1" class="day-content space-y-3">
-            <div class="text-xs font-bold text-stone-500 uppercase tracking-wider px-1">Ngày 1 - Arrival & Hoàng Hôn</div>
-            
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 space-y-2">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <span class="bg-orange-100 text-orange-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Ăn uống</span>
-                        <h3 class="font-bold text-stone-800 mt-1">Bếp Mẹ Tịnh</h3>
-                        <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 14:00 - 15:10</p>
-                    </div>
-                </div>
-                <div class="pt-2 border-t border-stone-100 flex justify-between items-center text-xs">
-                    <a href="tel:0383589098" class="text-stone-600 flex items-center gap-1"><i class="fa-solid fa-phone text-emerald-600"></i> 038 358 9098</a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=B%E1%BA%BFp+M%E1%BA%B9+T%E1%BB%8Bnh+M%E1%BB%99c+Ch%C3%A2u" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
-                        <i class="fa-solid fa-diamond-turn-right text-emerald-600"></i> Chỉ đường
-                    </a>
-                </div>
-            </div>
+  <div class="schedule-card">
+    <div class="card-header">
+      <span class="time-badge">08:50 - 14:00</span>
+      <span class="type-badge type-pri">⭐ Primary</span>
+    </div>
+    <div class="location-title">🚌 Di chuyển: Bến xe Mỹ Đình ➔ Mama's house homestay</div>
+    <div class="meta-info">
+      <span>📞 0989956390</span>
+      <a href="https://maps.app.goo.gl/NGqFKCkKH2YcpCLJ7" target="_blank" class="map-btn">📍 Google Maps</a>
+    </div>
+  </div>
 
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 space-y-2">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <span class="bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Cà phê ✨</span>
-                        <h3 class="font-bold text-stone-800 mt-1">Tiệm Cà Phê Cảnh Cam</h3>
-                        <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 16:40 - 18:40</p>
-                        <p class="text-xs font-medium text-amber-600 mt-1">🌅 Ngồi chơi ngắm hoàng hôn</p>
-                    </div>
-                </div>
-                <div class="pt-2 border-t border-stone-100 flex justify-between items-center text-xs">
-                    <a href="tel:0386338637" class="text-stone-600 flex items-center gap-1"><i class="fa-solid fa-phone text-emerald-600"></i> 038 633 8637</a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Ti%E1%BB%87m+c%C3%A0+ph%C3%AA+c%E1%BA%A3nh+cam+M%E1%BB%99c+Ch%C3%A2u" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
-                        <i class="fa-solid fa-diamond-turn-right text-emerald-600"></i> Chỉ đường
-                    </a>
-                </div>
-            </div>
+  <div class="schedule-card">
+    <div class="card-header">
+      <span class="time-badge">14:00 - 15:10</span>
+      <span class="type-badge type-pri">⭐ Primary</span>
+    </div>
+    <div class="location-title">🍽️ Ăn uống: Mama's house ➔ Nhà Cuối Ngõ</div>
+    <div class="meta-info">
+      <span>📞 092.738.8668 / 0336.003.088</span>
+      <a href="https://maps.app.goo.gl/jcFrYGMfsGsmyk8w6" target="_blank" class="map-btn">📍 Google Maps</a>
+    </div>
+  </div>
 
-            <div class="bg-stone-50 p-4 rounded-2xl border border-dashed border-stone-300 space-y-2 opacity-90">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <span class="bg-stone-200 text-stone-600 text-[10px] font-bold px-2 py-0.5 rounded-full">Backup</span>
-                        <h3 class="font-bold text-stone-700 mt-1">The Lake Coffee</h3>
-                        <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 16:40 - 18:30</p>
-                    </div>
-                </div>
-                <div class="pt-2 border-t border-stone-200 flex justify-between items-center text-xs">
-                    <a href="tel:0945030555" class="text-stone-600 flex items-center gap-1"><i class="fa-solid fa-phone text-emerald-600"></i> 0945 030 555</a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=The+Lake+coffee+M%E1%BB%99c+Ch%C3%A2u" target="_blank" class="bg-stone-200 hover:bg-stone-300 text-stone-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
-                        <i class="fa-solid fa-diamond-turn-right"></i> Chỉ đường
-                    </a>
-                </div>
-            </div>
+  <div class="schedule-card backup">
+    <div class="card-header">
+      <span class="time-badge">14:00 - 15:10</span>
+      <span class="type-badge type-backup">🔄 Backup</span>
+    </div>
+    <div class="location-title">🍽️ Ăn uống: Mama's house ➔ Bếp Mệ Tình</div>
+    <div class="meta-info">
+      <span>📞 038 358 9098</span>
+      <a href="https://maps.app.goo.gl/u1QSG4SYmF5owGfZ7" target="_blank" class="map-btn">📍 Google Maps</a>
+    </div>
+  </div>
 
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 space-y-2">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <span class="bg-orange-100 text-orange-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Ăn tối</span>
-                        <h3 class="font-bold text-stone-800 mt-1">Cá Hồi Hang Dơi</h3>
-                        <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 19:10 - 21:10</p>
-                    </div>
-                </div>
-                <div class="pt-2 border-t border-stone-100 flex justify-between items-center text-xs">
-                    <a href="tel:0979928969" class="text-stone-600 flex items-center gap-1"><i class="fa-solid fa-phone text-emerald-600"></i> 0979 928 969</a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=C%C3%A1+h%E1%BB%93i+hang+d%C6%A1i+M%E1%BB%99c+Ch%C3%A2u" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
-                        <i class="fa-solid fa-diamond-turn-right text-emerald-600"></i> Chỉ đường
-                    </a>
-                </div>
-            </div>
-        </div>
+  <div class="schedule-card">
+    <div class="card-header">
+      <span class="time-badge">15:10 - 16:40</span>
+      <span class="type-badge type-pri">⭐ Primary</span>
+    </div>
+    <div class="location-title">🏡 Nghỉ ngơi: Bếp Mệ Tình ➔ Mama's house homestay</div>
+  </div>
 
-        <!-- DAY 2 (29/08) -->
-        <div id="day2" class="day-content space-y-3 hidden">
-            <div class="text-xs font-bold text-stone-500 uppercase tracking-wider px-1">Ngày 2 - Khám Phá & Chill Đêm</div>
-            
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 space-y-2">
-                <div>
-                    <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Tham quan</span>
-                    <h3 class="font-bold text-stone-800 mt-1">Làng Nguyên Thủy Tà Phềnh</h3>
-                    <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 09:00 - 11:10</p>
-                </div>
-                <div class="pt-2 border-t border-stone-100 flex justify-end items-center text-xs">
-                    <a href="https://www.google.com/maps/search/?api=1&query=L%C3%A0ng+Nguy%C3%AAn+th%E1%BB%A7y+T%C3%A0+ph%E1%BB%81nh" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
-                        <i class="fa-solid fa-diamond-turn-right text-emerald-600"></i> Chỉ đường
-                    </a>
-                </div>
-            </div>
+  <div class="schedule-card">
+    <div class="card-header">
+      <span class="time-badge">16:40 - 18:40</span>
+      <span class="type-badge type-pri">⭐ Primary</span>
+    </div>
+    <div class="location-title">☕ Cà phê: Tiệm cà phê cánh cam</div>
+    <div class="meta-info">
+      <span>📞 038 633 8637</span>
+      <span>📝 Ngồi chơi hoàng hôn</span>
+      <a href="https://maps.app.goo.gl/5VFQMaEFukfvgJat9" target="_blank" class="map-btn">📍 Google Maps</a>
+    </div>
+  </div>
 
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 space-y-2">
-                <div>
-                    <span class="bg-orange-100 text-orange-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Ăn trưa</span>
-                    <h3 class="font-bold text-stone-800 mt-1">Tuấn Gù 1</h3>
-                    <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 11:10 - 13:12</p>
-                </div>
-                <div class="pt-2 border-t border-stone-100 flex justify-between items-center text-xs">
-                    <a href="tel:0834998585" class="text-stone-600 flex items-center gap-1"><i class="fa-solid fa-phone text-emerald-600"></i> 0834 998 585</a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Nh%C3%A0+h%C3%A0ng+Tu%E1%BA%A5n+G%C3%B9+1+M%E1%BB%99c+Ch%C3%A2u" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
-                        <i class="fa-solid fa-diamond-turn-right text-emerald-600"></i> Chỉ đường
-                    </a>
-                </div>
-            </div>
+  <div class="schedule-card backup">
+    <div class="card-header">
+      <span class="time-badge">16:40 - 18:30</span>
+      <span class="type-badge type-backup">🔄 Backup</span>
+    </div>
+    <div class="location-title">☕ Cà phê: The Lake coffee</div>
+    <div class="meta-info">
+      <span>📞 0945030555</span>
+      <span>📝 Ngồi chơi hoàng hôn</span>
+      <a href="https://maps.app.goo.gl/pSLwPNZVzND6ymjD6" target="_blank" class="map-btn">📍 Google Maps</a>
+    </div>
+  </div>
 
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 space-y-2">
-                <div>
-                    <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Tham quan</span>
-                    <h3 class="font-bold text-stone-800 mt-1">Suối Bản Mòn</h3>
-                    <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 15:32 - 16:42</p>
-                </div>
-                <div class="pt-2 border-t border-stone-100 flex justify-end items-center text-xs">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Su%E1%BB%91i+b%E1%BA%A3n+m%C3%B2n+M%E1%BB%99c+Ch%C3%A2u" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
-                        <i class="fa-solid fa-diamond-turn-right text-emerald-600"></i> Chỉ đường
-                    </a>
-                </div>
-            </div>
+  <div class="schedule-card">
+    <div class="card-header">
+      <span class="time-badge">18:40 - 19:10</span>
+      <span class="type-badge type-pri">⭐ Primary</span>
+    </div>
+    <div class="location-title">🚗 Di chuyển: Tiệm cà phê cánh cam ➔ Mộc Châu foodstore</div>
+    <div class="meta-info">
+      <span>📞 098 155 95 51</span>
+      <a href="https://maps.app.goo.gl/SEnBmyqHsqBp3m5T8" target="_blank" class="map-btn">📍 Google Maps</a>
+    </div>
+  </div>
 
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 space-y-2">
-                <div>
-                    <span class="bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Cà phê</span>
-                    <h3 class="font-bold text-stone-800 mt-1">Our Own Cfe Prj</h3>
-                    <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 17:22 - 18:37</p>
-                </div>
-                <div class="pt-2 border-t border-stone-100 flex justify-end items-center text-xs">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Our+own+cfe+prj+M%E1%BB%99c+Ch%C3%A2u" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
-                        <i class="fa-solid fa-diamond-turn-right text-emerald-600"></i> Chỉ đường
-                    </a>
-                </div>
-            </div>
+  <div class="schedule-card">
+    <div class="card-header">
+      <span class="time-badge">19:10 - 21:10</span>
+      <span class="type-badge type-pri">⭐ Primary</span>
+    </div>
+    <div class="location-title">🐟 Ăn uống: Cá hồi hang dơi</div>
+    <div class="meta-info">
+      <span>📞 0979 928 969</span>
+      <span>📝 Ăn tối</span>
+      <a href="https://maps.app.goo.gl/WQ314Na5N141R2tm6" target="_blank" class="map-btn">📍 Google Maps</a>
+    </div>
+  </div>
 
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 space-y-2">
-                <div>
-                    <span class="bg-orange-100 text-orange-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Ăn tối</span>
-                    <h3 class="font-bold text-stone-800 mt-1">Đá Cfe & BBQ</h3>
-                    <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 18:37 - 20:12</p>
-                </div>
-                <div class="pt-2 border-t border-stone-100 flex justify-between items-center text-xs">
-                    <a href="tel:0332209899" class="text-stone-600 flex items-center gap-1"><i class="fa-solid fa-phone text-emerald-600"></i> 033 220 9899</a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=%C4%90%C3%A1+cfe+and+BBQ+M%E1%BB%99c+Ch%C3%A2u" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
-                        <i class="fa-solid fa-diamond-turn-right text-emerald-600"></i> Chỉ đường
-                    </a>
-                </div>
-            </div>
+  <div class="schedule-card backup">
+    <div class="card-header">
+      <span class="time-badge">19:10 - 20:30</span>
+      <span class="type-badge type-backup">🔄 Backup</span>
+    </div>
+    <div class="location-title">🍲 Ăn uống: Lẩu sườn bò kim chi (Nguyệt Anh Quán)</div>
+    <div class="meta-info">
+      <span>📞 032 741 0051</span>
+      <a href="https://maps.app.goo.gl/zAXSEx8iNyDdD2ez7" target="_blank" class="map-btn">📍 Google Maps</a>
+    </div>
+  </div>
 
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 space-y-2">
-                <div>
-                    <span class="bg-indigo-100 text-indigo-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Dạo chơi</span>
-                    <h3 class="font-bold text-stone-800 mt-1">Chợ Đêm Mộc Châu</h3>
-                    <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 20:12 - 21:22</p>
-                </div>
-                <div class="pt-2 border-t border-stone-100 flex justify-end items-center text-xs">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Ch%C6%A1+d%C3%AA%CC%82m+M%C3%B4%CC%82c+Cha%CC%82u" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
-                        <i class="fa-solid fa-diamond-turn-right text-emerald-600"></i> Chỉ đường
-                    </a>
-                </div>
-            </div>
-        </div>
+  <div class="schedule-card">
+    <div class="card-header">
+      <span class="time-badge">21:10 - 21:20</span>
+      <span class="type-badge type-pri">⭐ Primary</span>
+    </div>
+    <div class="location-title">🚗 Di chuyển: Cá hồi hang dơi ➔ Mama's house homestay</div>
+  </div>
 
-        <!-- DAY 3 (30/08) -->
-        <div id="day3" class="day-content space-y-3 hidden">
-            <div class="text-xs font-bold text-stone-500 uppercase tracking-wider px-1">Ngày 3 - Check-out & Về Hà Nội</div>
-            
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 space-y-2">
-                <div>
-                    <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Trải nghiệm</span>
-                    <h3 class="font-bold text-stone-800 mt-1">Lam Sơn Farm (Hái nho)</h3>
-                    <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 08:52 - 09:47</p>
-                </div>
-                <div class="pt-2 border-t border-stone-100 flex justify-between items-center text-xs">
-                    <a href="tel:0342110868" class="text-stone-600 flex items-center gap-1"><i class="fa-solid fa-phone text-emerald-600"></i> 0342 110 868</a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Lam+s%C6%A1n+farm+M%E1%BB%99c+Ch%C3%A2u" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
-                        <i class="fa-solid fa-diamond-turn-right text-emerald-600"></i> Chỉ đường
-                    </a>
-                </div>
-            </div>
+  <div class="schedule-card">
+    <div class="card-header">
+      <span class="time-badge">21:20 - 00:20</span>
+      <span class="type-badge type-pri">⭐ Primary</span>
+    </div>
+    <div class="location-title">🌙 Nghỉ ngơi: Mama's house homestay</div>
+  </div>
 
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 space-y-2">
-                <div>
-                    <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Tham quan</span>
-                    <h3 class="font-bold text-stone-800 mt-1">Đồi Thông Bản Áng</h3>
-                    <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 09:47 - 10:42</p>
-                </div>
-                <div class="pt-2 border-t border-stone-100 flex justify-end items-center text-xs">
-                    <a href="https://www.google.com/maps/search/?api=1&query=%C4%90%E1%BB%93i+th%C3%B4ng+b%E1%BA%A3n+%C3%81ng+M%E1%BB%99c+Ch%C3%A2u" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
-                        <i class="fa-solid fa-diamond-turn-right text-emerald-600"></i> Chỉ đường
-                    </a>
-                </div>
-            </div>
+  <!-- NGÀY 29/08/2026 -->
+  <div class="day-title">📅 Ngày 29/08/2026</div>
 
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-200 space-y-2">
-                <div>
-                    <span class="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Homestay</span>
-                    <h3 class="font-bold text-stone-800 mt-1">Mama's House (Check-out)</h3>
-                    <p class="text-xs text-stone-500"><i class="fa-regular fa-clock"></i> 10:42 - 11:47</p>
-                </div>
-                <div class="pt-2 border-t border-stone-100 flex justify-end items-center text-xs">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Mama%27s+house+homestay+M%E1%BB%99c+Ch%C3%A2u" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
-                        <i class="fa-solid fa-diamond-turn-right text-emerald-600"></i> Chỉ đường
-                    </a>
-                </div>
-            </div>
-        </div>
+  <div class="schedule-card">
+    <div class="card-header">
+      <span class="time-badge">09:00 - 11:10</span>
+      <span class="type-badge type-pri">⭐ Primary</span>
+    </div>
+    <div class="location-title">🌾 Tham quan: Mama's house ➔ Làng Nguyên thủy Tà phềnh</div>
+    <div class="meta-info">
+      <a href="https://maps.app.goo.gl/S3XWsxs8gbKhmxRa8" target="_blank" class="map-btn">📍 Google Maps</a>
+    </div>
+  </div>
 
-    </main>
+  <div class="schedule-card">
+    <div class="card-header">
+      <span class="time-badge">11:10 - 13:12</span>
+      <span class="type-badge type-pri">⭐ Primary</span>
+    </div>
+    <div class="location-title">🍗 Ăn uống: Tuân gù 1</div>
+    <div class="meta-info">
+      <span>📞 0834998585</span>
+      <a href="https://maps.app.goo.gl/oHEShsfVBGKujhkNA" target="_blank" class="map-btn">📍 Google Maps</a>
+    </div>
+  </div>
 
-    <script>
-        function showDay(dayId) {
-            document.querySelectorAll('.day-content').forEach(el => el.classList.add('hidden'));
-            document.getElementById(dayId).classList.remove('hidden');
+  <div class="schedule-card">
+    <div class="card-header">
+      <span class="time-badge">13:12 - 15:32</span>
+      <span class="type-badge type-pri">⭐ Primary</span>
+    </div>
+    <div class="location-title">🚗 Di chuyển: Tuân gù 1 ➔ Mama's house homestay</div>
+  </div>
 
-            document.querySelectorAll('.tab-btn').forEach(el => {
-                el.classList.remove('bg-white', 'text-emerald-800', 'shadow');
-                el.classList.add('text-stone-600');
-            });
+  <div class="schedule-card">
+    <div class="card-header">
+      <span class="time-badge">15:32 - 16:42</span>
+      <span class="type-badge type-pri">⭐ Primary</span>
+    </div>
+    <div class="location-title">🌊 Tham quan: Mama's house ➔ Suối bản mòn</div>
+    <div class="meta-info">
+      <a href="https://maps.app.goo.gl/AhCs3dhNk2Y6ggsz7" target="_blank" class="map-btn">📍 Google Maps</a>
+    </div>
+  </div>
 
-            const activeBtn = document.getElementById('btn-' + dayId);
-            activeBtn.classList.add('bg-white', 'text-emerald-800', 'shadow');
-            activeBtn.classList.remove('text-stone-600');
-        }
-    </script>
-</body>
-</html>
+  <div class="schedule-card">
+    <div class="card-header">
+      <span class="time-badge">16:42 - 17:22</span>
+      <span class="type-badge type-pri">⭐ Primary</span>
+    </div>
+    <div class="location-title">🏡 Nghỉ ngơi: Suối bản mòn ➔ Mama's house homestay</div>
+  </div>
+
+  <div class="schedule-card">
+    <div class="card-header">
+      <span class="time-badge">17:22 - 18:37</span>
+      <span class="type-badge type-pri">⭐ Primary</span>
+    </div>
+    <div class="location-title">☕ Cà phê: Our own cfe prj</div>
+    <div class="meta-info">
+      <a href="https://maps.app.goo.gl/qnWiecwm1DT2uwKx8" target="_blank" class="map-btn">📍 Google Maps</a>
+    </div>
+  </div>
+
+  <div class="schedule-card">
+    <div class="card-header">
+      <span class="time-badge">18:37 - 20:12</span>
+      <span class="type-badge type-pri">⭐ Primary</span>
+    </div>
+    <div class="location-title">🥩 Ăn uống: Đá cfe and BBQ</div>
+    <div class="meta-info">
+      <span>📞 033 220 9899</span>
+      <a href="https://maps.app.goo.gl/32tWXX7NZCuQb8RT9" target="_blank" class="map-btn">📍 Google Maps</a>
+    </div>
+  </div>
+
+  <div class="schedule-card backup">
+    <div class="card-header">
+      <span class="time-badge">18:37 - 20:17</span>
+      <span class="type-badge type-backup">🔄 Backup</span>
+    </div>
+    <div class="location-title">🍢 Ăn uống: Kua nướng</div>
+    <div class="meta-info">
+      <a href="https://maps.app.goo.gl/HY4SUEta6Kd7ES937" target="_blank" class="map-btn">📍 Google Maps</a>
+    </div>
+  </div>
+
+  <div class="schedule-card">
+    <div class="card-header">
+      <span class="time-badge">20:12 - 21:22</span>
+      <span class="type-badge type-pri">⭐ Primary</span>
+    </div>
+    <div class="location-title">🛍️ Ăn uống / Vui chơi: Chợ đêm Mộc Châu</div>
+    <div class="meta-info">
+      <a href="https://maps.app.goo.gl/pUiNMWUFwLYA99yP9" target="_blank" class="map-btn">📍 Google Maps</a>
+    </div>
+  </div>
+
+  <div class="schedule-card">
+    <div class="card-header">
+      <span class="time-badge">21:22 - 08:52</span>
+      <span class="type-badge type-pri">⭐ Primary</span>
+    </div>
+    <div class="location-title">🌙 Nghỉ ngơi: Chợ đêm Mộc Châu ➔ Mama's house homestay</div>
+  </div>
+
+  <!-- NGÀY 30/08/2026 -->
+  <div class="day-title">📅 Ngày 30/08/2026</div>
+
+  <div class="schedule-card">
+    <div class="card-header">
+      <span class="time-badge">08:52 - 09:47</span>
+      <span class="type-badge type-pri">⭐ Primary</span>
+    </div>
+    <div class="location-title">🍇 Tham quan: Lam sơn farm</div>
+    <div class="meta-info">
+      <span>📞 0342.110.868</span>
+      <span>📝 Hái nho</span>
+      <a href="https://maps.app.goo.gl/Z4dByzJhraP7a52e9" target="_blank" class="map-btn">📍 Google Maps</a>
+    </div>
+  </div>
+
+  <div class="schedule-card">
+    <div class="card-header">
+      <span class="time-badge">09:47 - 10:42</span>
+      <span class="type-badge type-pri">⭐ Primary</span>
+    </div>
+    <div class="location-title">🌲 Tham quan: Đồi thông bản Áng</div>
+    <div class="meta-info">
+      <a href="https://maps.app.goo.gl/fN2w3KZNnBykMQBE7" target="_blank" class="map-btn">📍 Google Maps</a>
+    </div>
+  </div>
+
+  <div class="schedule-card">
+    <div class="card-header">
+      <span class="time-badge">10:42 - 11:47</span>
+      <span class="type-badge type-pri">⭐ Primary</span>
+    </div>
+    <div class="location-title">🧳 Di chuyển: Đồi thông bản Áng ➔ Mama's house homestay</div>
+    <div class="meta-info">
+      <span>📝 Pack đồ check out</span>
+    </div>
+  </div>
+
+  <div class="schedule-card">
+    <div class="card-header">
+      <span class="time-badge">11:47 - 12:57</span>
+      <span class="type-badge type-pri">⭐ Primary</span>
+    </div>
+    <div class="location-title">🍲 Ăn uống: Bếp Mệ Tình</div>
+  </div>
+
+  <div class="schedule-card">
+    <div class="card-header">
+      <span class="time-badge">12:57 - Về Hà Nội</span>
+      <span class="type-badge type-pri">⭐ Primary</span>
+    </div>
+    <div class="location-title">🏠 Di chuyển: Bếp Mệ Tình ➔ Nhà (Hà Nội)</div>
+  </div>
+
+</div>
