@@ -7,17 +7,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --bg-primary: #0a1315;        /* Midnight Teal */
-      --bg-card: #121e20;           /* Emerald Card */
-      --border-color: #213539;      /* Teal Border */
-      --text-main: #e2f1f1;         /* Mint Ice Text */
-      --text-muted: #6b8a8e;        /* Muted Teal */
-      --accent-color: #20b2aa;      /* Cyan Accent */
-      --accent-gradient: linear-gradient(135deg, #10b981, #06b6d4);
-      --warm-wood: #14b8a6;
-      --backup-bg: #0f181a;
-      --backup-border: #2a4348;
-      --radius: 18px;
+      --bg-primary: #ffffff;
+      --bg-card: #ffffff;
+      --border-color: #f0f0f0;
+      --text-main: #000000;
+      --text-muted: #737373;
+      --accent-color: #000000;
+      --like-color: #ff3040;
+      --radius: 16px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -28,290 +25,154 @@
       display: flex;
       justify-content: center;
       min-height: 100vh;
-      padding: 12px 14px 40px;
+      padding: 0 0 40px;
     }
 
     .container {
       width: 100%;
       max-width: 520px;
+      padding: 0 14px;
     }
 
-    /* Header Threads Style */
+    /* TOP BAR SOCIAL */
+    .top-social-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+    }
+    .brand-title { font-size: 0.95rem; font-weight: 800; letter-spacing: -0.3px; }
+    .social-links { display: flex; gap: 16px; align-items: center; }
+    .social-btn { color: var(--text-main); font-size: 1.25rem; text-decoration: none; }
+
+    /* HEADER */
     .app-header {
       text-align: center;
       padding: 16px 0 12px;
       border-bottom: 1px solid var(--border-color);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
-    .profile-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 8px;
-    }
+    .profile-badge { display: inline-flex; align-items: center; gap: 8px; }
     .avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: var(--accent-gradient);
-      color: #061718;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 13px;
+      width: 34px; height: 34px; border-radius: 50%; background: #000;
+      color: #fff; display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 13px;
     }
-    .app-header h1 {
-      font-size: 1.2rem;
-      font-weight: 800;
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: -0.3px;
-    }
+    .app-header h1 { font-size: 1.15rem; font-weight: 800; color: var(--text-main); }
     .countdown-box {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 20px;
-      display: inline-block;
-      padding: 5px 14px;
-      margin-top: 8px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--accent-color);
+      background: #f7f7f7; border: 1px solid var(--border-color);
+      border-radius: 20px; display: inline-block; padding: 4px 12px;
+      margin-top: 6px; font-size: 0.72rem; font-weight: 600;
     }
 
-    /* Tab Navigation Threads Style */
+    /* TAB NAVIGATION */
     .day-tabs {
-      display: flex;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      padding: 4px;
-      border-radius: 14px;
-      margin-bottom: 12px;
-      gap: 2px;
+      display: flex; background: #f7f7f7; border: 1px solid var(--border-color);
+      padding: 4px; border-radius: 14px; margin-bottom: 12px; gap: 2px;
     }
     .tab-btn {
-      flex: 1;
-      padding: 8px 2px;
-      border: none;
-      background: transparent;
-      border-radius: 10px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      cursor: pointer;
-      text-align: center;
-      transition: all 0.2s ease;
+      flex: 1; padding: 7px 2px; border: none; background: transparent;
+      border-radius: 10px; font-size: 0.75rem; font-weight: 700;
+      color: var(--text-muted); cursor: pointer; text-align: center;
+      transition: all 0.2s;
     }
-    .tab-btn small {
-      display: block;
-      font-size: 0.65rem;
-      font-weight: 500;
-      margin-top: 1px;
-    }
-    .tab-btn.active {
-      background: var(--accent-gradient);
-      color: #061718;
-    }
+    .tab-btn small { display: block; font-size: 0.62rem; font-weight: 500; }
+    .tab-btn.active { background: #ffffff; color: var(--text-main); box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
 
-    /* Category Filter */
+    /* CATEGORY FILTER */
     .filter-wrapper {
-      display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      padding-bottom: 6px;
-      margin-bottom: 12px;
-      scrollbar-width: none;
+      display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px;
+      margin-bottom: 12px; scrollbar-width: none;
     }
     .filter-wrapper::-webkit-scrollbar { display: none; }
-    
     .chip {
-      flex: 0 0 auto;
-      padding: 5px 12px;
-      border-radius: 16px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      cursor: pointer;
+      flex: 0 0 auto; padding: 5px 12px; border-radius: 16px;
+      background: #fff; border: 1px solid var(--border-color);
+      font-size: 0.73rem; font-weight: 600; color: var(--text-muted); cursor: pointer;
     }
-    .chip.active {
-      background: var(--accent-color);
-      color: #061718;
-      border-color: var(--accent-color);
-    }
+    .chip.active { background: #000; color: #fff; border-color: #000; }
 
-    /* Tab Content Views */
+    /* TAB CONTENT */
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
-    /* Timeline Cards - Threads Post Style */
+    /* TIMELINE ITEM */
     .timeline-item {
-      background: var(--bg-card);
-      border-radius: var(--radius);
-      padding: 14px;
-      margin-bottom: 12px;
-      border: 1px solid var(--border-color);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      background: var(--bg-card); border-radius: var(--radius);
+      padding: 14px; margin-bottom: 10px; border: 1px solid var(--border-color);
     }
-    .timeline-item.backup {
-      background: var(--backup-bg);
-      border: 1px dashed var(--backup-border);
-    }
+    .timeline-item.backup { background: #fafafa; border: 1px dashed #e0e0e0; }
+    .item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .time { font-size: 0.75rem; font-weight: 700; background: rgba(0,0,0,0.05); padding: 2px 8px; border-radius: 6px; }
+    .badge { font-size: 0.62rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; }
+    .badge-pri { background: #000; color: #fff; }
+    .badge-backup { background: #eee; color: #666; }
+    .route { font-size: 0.92rem; font-weight: 600; margin-bottom: 6px; }
+    .arrow { color: #888; font-weight: normal; margin: 0 4px; }
+    .item-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; padding-top: 6px; border-top: 1px solid var(--border-color); font-size: 0.73rem; color: var(--text-muted); }
+    .btn-map { padding: 4px 10px; background: #000; color: #fff; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 0.7rem; }
 
-    .item-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
+    /* THREADS / INSTAGRAM DIARY TAB */
+    .diary-composer {
+      background: #fff; border: 1px solid var(--border-color); border-radius: var(--radius);
+      padding: 14px; margin-bottom: 16px;
     }
-    .time {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--accent-color);
-      background: rgba(32, 178, 170, 0.1);
-      padding: 3px 8px;
-      border-radius: 6px;
-      border: 1px solid rgba(32, 178, 170, 0.2);
+    .composer-header { display: flex; gap: 10px; align-items: center; margin-bottom: 10px; }
+    .composer-input {
+      width: 100%; border: none; outline: none; font-size: 0.88rem;
+      resize: none; font-family: inherit; color: var(--text-main);
     }
-    .badge {
-      font-size: 0.65rem;
-      font-weight: 700;
-      padding: 2px 6px;
-      border-radius: 4px;
-      text-transform: uppercase;
-    }
-    .badge-pri { background: rgba(16, 185, 129, 0.15); color: #34d399; }
-    .badge-backup { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
-
-    .route {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text-main);
-      margin-bottom: 6px;
-    }
-    .arrow { color: var(--accent-color); font-weight: normal; margin: 0 4px; }
-
-    .item-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 10px;
-      padding-top: 8px;
-      border-top: 1px solid var(--border-color);
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-    .meta-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .composer-actions { display: flex; justify-content: space-between; align-items: center; pt-8; border-top: 1px solid var(--border-color); padding-top: 8px; }
+    .btn-attach { color: var(--text-muted); font-size: 1.1rem; cursor: pointer; }
+    .btn-post { background: #000; color: #fff; border: none; padding: 6px 14px; border-radius: 16px; font-weight: 700; font-size: 0.75rem; cursor: pointer; }
     
-    .btn-map {
-      padding: 5px 12px;
-      background: var(--accent-gradient);
-      color: #061718;
-      border-radius: 14px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.72rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
+    .threads-post {
+      background: #fff; border: 1px solid var(--border-color); border-radius: var(--radius);
+      padding: 14px; margin-bottom: 12px;
     }
+    .post-author { display: flex; items-center; gap: 10px; margin-bottom: 8px; }
+    .author-info { flex: 1; }
+    .author-name { font-size: 0.85rem; font-weight: 700; }
+    .post-time { font-size: 0.7rem; color: var(--text-muted); }
+    .post-content { font-size: 0.88rem; line-height: 1.4; margin-bottom: 10px; white-space: pre-line; }
+    .post-img { width: 100%; max-height: 280px; object-fit: cover; border-radius: 12px; margin-bottom: 10px; display: none; }
+    .post-actions { display: flex; gap: 16px; color: var(--text-muted); font-size: 1.05rem; padding-top: 4px; }
+    .post-actions i { cursor: pointer; transition: transform 0.15s ease; }
+    .post-actions i:active { transform: scale(0.85); }
+    .post-actions i.liked { color: var(--like-color); }
 
-    /* Memory Log Style */
-    .memory-log {
-      margin-top: 10px;
-      padding-top: 8px;
-      border-top: 1px dashed var(--border-color);
-    }
-    .memory-input {
-      width: 100%;
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
-      padding: 8px 10px;
-      font-size: 0.78rem;
-      outline: none;
-      background: #0d1719;
-      color: var(--text-main);
-    }
-    .memory-input:focus { border-color: var(--accent-color); }
-    .memory-input::placeholder { color: var(--text-muted); }
-
-    /* Checklist & Prep Card */
-    .prep-card {
-      background: var(--bg-card);
-      border-radius: var(--radius);
-      padding: 16px;
-      margin-bottom: 12px;
-      border: 1px solid var(--border-color);
-    }
-    .prep-card h3 {
-      font-size: 0.95rem;
-      color: var(--text-main);
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .checklist-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 0;
-      border-bottom: 1px solid var(--border-color);
-      font-size: 0.85rem;
-    }
+    /* PREP & CHECKLIST */
+    .prep-card { background: #fff; border-radius: var(--radius); padding: 14px; margin-bottom: 10px; border: 1px solid var(--border-color); }
+    .prep-card h3 { font-size: 0.9rem; margin-bottom: 8px; }
+    .checklist-item { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--border-color); font-size: 0.82rem; }
     .checklist-item:last-child { border-bottom: none; }
-    .checklist-item input[type="checkbox"] {
-      width: 16px;
-      height: 16px;
-      accent-color: var(--accent-color);
-    }
-    
-    .btn-email {
-      display: block;
-      width: 100%;
-      text-align: center;
-      background: var(--accent-gradient);
-      color: #061718;
-      padding: 10px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 800;
-      font-size: 0.82rem;
-      margin-top: 10px;
-    }
+    .btn-email { display: block; width: 100%; text-align: center; background: #000; color: #fff; padding: 9px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 0.8rem; margin-top: 8px; }
 
-    /* Stats Footer Widget */
-    .stats-widget {
-      background: var(--bg-card);
-      border-radius: var(--radius);
-      padding: 14px;
-      margin-top: 20px;
-      text-align: center;
-      border: 1px solid var(--border-color);
-      font-size: 0.78rem;
-      color: var(--text-muted);
-    }
-    .stats-grid {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 10px;
-      padding-top: 10px;
-      border-top: 1px solid var(--border-color);
-    }
-    .stat-number {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: var(--accent-color);
-      display: block;
-    }
+    /* STATS FOOTER */
+    .stats-widget { background: #fff; border-radius: var(--radius); padding: 12px; margin-top: 16px; text-align: center; border: 1px solid var(--border-color); font-size: 0.75rem; color: var(--text-muted); }
+    .stats-grid { display: flex; justify-content: space-around; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border-color); }
+    .stat-number { font-size: 1rem; font-weight: 800; color: var(--text-main); display: block; }
   </style>
 </head>
 <body>
 
   <div class="container">
+    <!-- TOP BAR -->
+    <div class="top-social-bar">
+      <div class="brand-title">Mộc Châu Trip</div>
+      <div class="social-links">
+        <a href="https://www.threads.net" target="_blank" class="social-btn" title="Threads"><i class="fa-brands fa-threads"></i></a>
+        <a href="https://www.instagram.com" target="_blank" class="social-btn" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <!-- HEADER -->
     <div class="app-header">
       <div class="profile-badge">
         <div class="avatar">U</div>
@@ -321,24 +182,13 @@
       <div class="countdown-box" id="countdown">⏳ Đang tính ngày đi...</div>
     </div>
 
-    <!-- TAB SWITCHER -->
+    <!-- MAIN TABS -->
     <div class="day-tabs">
-      <button class="tab-btn active" onclick="switchDay('prep', this)">
-        Chuẩn bị
-        <small>27/08</small>
-      </button>
-      <button class="tab-btn" onclick="switchDay('day1', this)">
-        Ngày 1
-        <small>28/08</small>
-      </button>
-      <button class="tab-btn" onclick="switchDay('day2', this)">
-        Ngày 2
-        <small>29/08</small>
-      </button>
-      <button class="tab-btn" onclick="switchDay('day3', this)">
-        Ngày 3
-        <small>30/08</small>
-      </button>
+      <button class="tab-btn active" onclick="switchDay('prep', this)">Chuẩn bị<small>27/08</small></button>
+      <button class="tab-btn" onclick="switchDay('day1', this)">Ngày 1<small>28/08</small></button>
+      <button class="tab-btn" onclick="switchDay('day2', this)">Ngày 2<small>29/08</small></button>
+      <button class="tab-btn" onclick="switchDay('day3', this)">Ngày 3<small>30/08</small></button>
+      <button class="tab-btn" onclick="switchDay('diary', this)">Nhật ký<small>Threads</small></button>
     </div>
 
     <!-- CATEGORY FILTER -->
@@ -355,16 +205,14 @@
     <div id="prep" class="tab-content active">
       <div class="prep-card">
         <h3>📧 Nhắc nhở em Uyên qua Email</h3>
-        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 8px;">
-          Gửi email dặn dò chuẩn bị hành lý tới em Uyên chỉ với 1 cú chạm:
-        </p>
+        <p style="font-size: 0.75rem; color: var(--text-muted);">Gửi email dặn dò chuẩn bị hành lý tới em Uyên chỉ với 1 cú chạm:</p>
         <a id="emailBtn" href="#" class="btn-email">💌 Gửi mail dặn em Uyên chuẩn bị đồ</a>
       </div>
 
       <div class="prep-card">
         <h3>🎒 Checklist Hành Trang Đôi</h3>
         <div id="checklistContainer">
-          <label class="checklist-item"><input type="checkbox" onchange="saveChecklist()" data-id="1"> 👗 Quần áo em thích </label>
+          <label class="checklist-item"><input type="checkbox" onchange="saveChecklist()" data-id="1"> 👗 Váy đẹp / Đồ chụp ảnh sống ảo</label>
           <label class="checklist-item"><input type="checkbox" onchange="saveChecklist()" data-id="2"> 🧥 Áo khoác mỏng (Mộc Châu buổi tối lạnh)</label>
           <label class="checklist-item"><input type="checkbox" onchange="saveChecklist()" data-id="3"> 🆔 CCCD / Giấy tờ tùy thân</label>
           <label class="checklist-item"><input type="checkbox" onchange="saveChecklist()" data-id="4"> 🔋 Sạc dự phòng & Dây sạc</label>
@@ -379,93 +227,52 @@
       <div class="timeline-item" data-type="Di chuyển">
         <div class="item-header"><span class="time">08:00 - 08:50</span><span class="badge badge-pri">Chính</span></div>
         <div class="route">Nhà <span class="arrow">➔</span> Bến xe Mỹ Đình</div>
-        <div class="item-footer">
-          <div class="meta-tags"><span>📞 098 155 95 51</span></div>
-          <a href="https://maps.app.goo.gl/GpWkKJd15ohjQPEr8" target="_blank" class="btn-map"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
-        </div>
-        <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd1_1')"></div>
+        <div class="item-footer"><span>📞 098 155 95 51</span><a href="https://maps.app.goo.gl/GpWkKJd15ohjQPEr8" target="_blank" class="btn-map">Bản đồ</a></div>
       </div>
-
       <div class="timeline-item" data-type="Di chuyển">
         <div class="item-header"><span class="time">08:50 - 14:00</span><span class="badge badge-pri">Chính</span></div>
         <div class="route">Bến xe Mỹ Đình <span class="arrow">➔</span> Mama's house</div>
-        <div class="item-footer">
-          <div class="meta-tags"><span>📞 0989956390</span></div>
-          <a href="https://maps.app.goo.gl/NGqFKCkKH2YcpCLJ7" target="_blank" class="btn-map"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
-        </div>
-        <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd1_2')"></div>
+        <div class="item-footer"><span>📞 0989956390</span><a href="https://maps.app.goo.gl/NGqFKCkKH2YcpCLJ7" target="_blank" class="btn-map">Bản đồ</a></div>
       </div>
-
       <div class="timeline-item" data-type="Ăn uống">
         <div class="item-header"><span class="time">14:00 - 15:10</span><span class="badge badge-pri">Chính</span></div>
         <div class="route">Mama's house <span class="arrow">➔</span> Nhà Cuối Ngõ</div>
-        <div class="item-footer">
-          <div class="meta-tags"><span>📞 092.738.8668</span></div>
-          <a href="https://maps.app.goo.gl/jcFrYGMfsGsmyk8w6" target="_blank" class="btn-map"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
-        </div>
-        <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd1_3')"></div>
+        <div class="item-footer"><span>📞 092.738.8668</span><a href="https://maps.app.goo.gl/jcFrYGMfsGsmyk8w6" target="_blank" class="btn-map">Bản đồ</a></div>
       </div>
-
       <div class="timeline-item backup" data-type="Ăn uống">
         <div class="item-header"><span class="time">14:00 - 15:10</span><span class="badge badge-backup">Dự phòng</span></div>
         <div class="route">Mama's house <span class="arrow">➔</span> Bếp Mệ Tình</div>
-        <div class="item-footer">
-          <div class="meta-tags"><span>📞 038 358 9098</span></div>
-          <a href="https://maps.app.goo.gl/u1QSG4SYmF5owGfZ7" target="_blank" class="btn-map"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
-        </div>
+        <div class="item-footer"><span>📞 038 358 9098</span><a href="https://maps.app.goo.gl/u1QSG4SYmF5owGfZ7" target="_blank" class="btn-map">Bản đồ</a></div>
       </div>
-
       <div class="timeline-item" data-type="Nghỉ ngơi">
         <div class="item-header"><span class="time">15:10 - 16:40</span><span class="badge badge-pri">Chính</span></div>
         <div class="route">Bếp Mệ Tình <span class="arrow">➔</span> Mama's house</div>
       </div>
-
       <div class="timeline-item" data-type="Cà phê">
         <div class="item-header"><span class="time">16:40 - 18:40</span><span class="badge badge-pri">Chính</span></div>
         <div class="route">Tiệm cà phê cánh cam</div>
-        <div class="item-footer">
-          <div class="meta-tags"><span>📝 Ngắm hoàng hôn</span></div>
-          <a href="https://maps.app.goo.gl/5VFQMaEFukfvgJat9" target="_blank" class="btn-map"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
-        </div>
-        <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd1_4')"></div>
+        <div class="item-footer"><span>📝 Ngắm hoàng hôn</span><a href="https://maps.app.goo.gl/5VFQMaEFukfvgJat9" target="_blank" class="btn-map">Bản đồ</a></div>
       </div>
-
       <div class="timeline-item backup" data-type="Cà phê">
         <div class="item-header"><span class="time">16:40 - 18:30</span><span class="badge badge-backup">Dự phòng</span></div>
         <div class="route">The Lake coffee</div>
-        <div class="item-footer">
-          <div class="meta-tags"><span>📞 0945030555</span></div>
-          <a href="https://maps.app.goo.gl/pSLwPNZVzND6ymjD6" target="_blank" class="btn-map"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
-        </div>
+        <div class="item-footer"><span>📞 0945030555</span><a href="https://maps.app.goo.gl/pSLwPNZVzND6ymjD6" target="_blank" class="btn-map">Bản đồ</a></div>
       </div>
-
       <div class="timeline-item" data-type="Di chuyển">
         <div class="item-header"><span class="time">18:40 - 19:10</span><span class="badge badge-pri">Chính</span></div>
         <div class="route">Cà phê cánh cam <span class="arrow">➔</span> Mộc Châu foodstore</div>
-        <div class="item-footer">
-          <a href="https://maps.app.goo.gl/SEnBmyqHsqBp3m5T8" target="_blank" class="btn-map"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
-        </div>
+        <div class="item-footer"><span></span><a href="https://maps.app.goo.gl/SEnBmyqHsqBp3m5T8" target="_blank" class="btn-map">Bản đồ</a></div>
       </div>
-
       <div class="timeline-item" data-type="Ăn uống">
         <div class="item-header"><span class="time">19:10 - 21:10</span><span class="badge badge-pri">Chính</span></div>
         <div class="route">Cá hồi hang dơi</div>
-        <div class="item-footer">
-          <div class="meta-tags"><span>📞 0979 928 969</span></div>
-          <a href="https://maps.app.goo.gl/WQ314Na5N141R2tm6" target="_blank" class="btn-map"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
-        </div>
-        <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd1_5')"></div>
+        <div class="item-footer"><span>📞 0979 928 969</span><a href="https://maps.app.goo.gl/WQ314Na5N141R2tm6" target="_blank" class="btn-map">Bản đồ</a></div>
       </div>
-
       <div class="timeline-item backup" data-type="Ăn uống">
         <div class="item-header"><span class="time">19:10 - 20:30</span><span class="badge badge-backup">Dự phòng</span></div>
         <div class="route">Lẩu sườn bò kim chi (Nguyệt Anh Quán)</div>
-        <div class="item-footer">
-          <div class="meta-tags"><span>📞 032 741 0051</span></div>
-          <a href="https://maps.app.goo.gl/zAXSEx8iNyDdD2ez7" target="_blank" class="btn-map"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
-        </div>
+        <div class="item-footer"><span>📞 032 741 0051</span><a href="https://maps.app.goo.gl/zAXSEx8iNyDdD2ez7" target="_blank" class="btn-map">Bản đồ</a></div>
       </div>
-
       <div class="timeline-item" data-type="Nghỉ ngơi">
         <div class="item-header"><span class="time">21:10 - 00:20</span><span class="badge badge-pri">Chính</span></div>
         <div class="route">Trở về Mama's house nghỉ ngơi</div>
@@ -477,70 +284,41 @@
       <div class="timeline-item" data-type="Thăm quan">
         <div class="item-header"><span class="time">09:00 - 11:10</span><span class="badge badge-pri">Chính</span></div>
         <div class="route">Làng Nguyên thủy Tà phềnh</div>
-        <div class="item-footer">
-          <a href="https://maps.app.goo.gl/S3XWsxs8gbKhmxRa8" target="_blank" class="btn-map"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
-        </div>
-        <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd2_1')"></div>
+        <div class="item-footer"><span></span><a href="https://maps.app.goo.gl/S3XWsxs8gbKhmxRa8" target="_blank" class="btn-map">Bản đồ</a></div>
       </div>
-
       <div class="timeline-item" data-type="Ăn uống">
         <div class="item-header"><span class="time">11:10 - 13:12</span><span class="badge badge-pri">Chính</span></div>
         <div class="route">Nhà hàng Tuân gù 1</div>
-        <div class="item-footer">
-          <div class="meta-tags"><span>📞 0834998585</span></div>
-          <a href="https://maps.app.goo.gl/oHEShsfVBGKujhkNA" target="_blank" class="btn-map"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
-        </div>
-        <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd2_2')"></div>
+        <div class="item-footer"><span>📞 0834998585</span><a href="https://maps.app.goo.gl/oHEShsfVBGKujhkNA" target="_blank" class="btn-map">Bản đồ</a></div>
       </div>
-
       <div class="timeline-item" data-type="Di chuyển">
         <div class="item-header"><span class="time">13:12 - 15:32</span><span class="badge badge-pri">Chính</span></div>
         <div class="route">Tuân gù 1 <span class="arrow">➔</span> Mama's house</div>
       </div>
-
       <div class="timeline-item" data-type="Thăm quan">
         <div class="item-header"><span class="time">15:32 - 16:42</span><span class="badge badge-pri">Chính</span></div>
         <div class="route">Suối bản mòn</div>
-        <div class="item-footer">
-          <a href="https://maps.app.goo.gl/AhCs3dhNk2Y6ggsz7" target="_blank" class="btn-map"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
-        </div>
-        <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd2_3')"></div>
+        <div class="item-footer"><span></span><a href="https://maps.app.goo.gl/AhCs3dhNk2Y6ggsz7" target="_blank" class="btn-map">Bản đồ</a></div>
       </div>
-
       <div class="timeline-item" data-type="Cà phê">
         <div class="item-header"><span class="time">17:22 - 18:37</span><span class="badge badge-pri">Chính</span></div>
         <div class="route">Our own cfe prj</div>
-        <div class="item-footer">
-          <a href="https://maps.app.goo.gl/qnWiecwm1DT2uwKx8" target="_blank" class="btn-map"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
-        </div>
-        <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd2_4')"></div>
+        <div class="item-footer"><span></span><a href="https://maps.app.goo.gl/qnWiecwm1DT2uwKx8" target="_blank" class="btn-map">Bản đồ</a></div>
       </div>
-
       <div class="timeline-item" data-type="Ăn uống">
         <div class="item-header"><span class="time">18:37 - 20:12</span><span class="badge badge-pri">Chính</span></div>
         <div class="route">Đá cfe and BBQ</div>
-        <div class="item-footer">
-          <div class="meta-tags"><span>📞 033 220 9899</span></div>
-          <a href="https://maps.app.goo.gl/32tWXX7NZCuQb8RT9" target="_blank" class="btn-map"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
-        </div>
-        <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd2_5')"></div>
+        <div class="item-footer"><span>📞 033 220 9899</span><a href="https://maps.app.goo.gl/32tWXX7NZCuQb8RT9" target="_blank" class="btn-map">Bản đồ</a></div>
       </div>
-
       <div class="timeline-item backup" data-type="Ăn uống">
         <div class="item-header"><span class="time">18:37 - 20:17</span><span class="badge badge-backup">Dự phòng</span></div>
         <div class="route">Kua nướng</div>
-        <div class="item-footer">
-          <a href="https://maps.app.goo.gl/HY4SUEta6Kd7ES937" target="_blank" class="btn-map"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
-        </div>
+        <div class="item-footer"><span></span><a href="https://maps.app.goo.gl/HY4SUEta6Kd7ES937" target="_blank" class="btn-map">Bản đồ</a></div>
       </div>
-
       <div class="timeline-item" data-type="Ăn uống">
         <div class="item-header"><span class="time">20:12 - 21:22</span><span class="badge badge-pri">Chính</span></div>
         <div class="route">Chợ đêm Mộc Châu</div>
-        <div class="item-footer">
-          <a href="https://maps.app.goo.gl/pUiNMWUFwLYA99yP9" target="_blank" class="btn-map"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
-        </div>
-        <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd2_6')"></div>
+        <div class="item-footer"><span></span><a href="https://maps.app.goo.gl/pUiNMWUFwLYA99yP9" target="_blank" class="btn-map">Bản đồ</a></div>
       </div>
     </div>
 
@@ -549,42 +327,50 @@
       <div class="timeline-item" data-type="Thăm quan">
         <div class="item-header"><span class="time">08:52 - 09:47</span><span class="badge badge-pri">Chính</span></div>
         <div class="route">Lam sơn farm (Hái nho)</div>
-        <div class="item-footer">
-          <div class="meta-tags"><span>📞 0342.110.868</span></div>
-          <a href="https://maps.app.goo.gl/Z4dByzJhraP7a52e9" target="_blank" class="btn-map"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
-        </div>
-        <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd3_1')"></div>
+        <div class="item-footer"><span>📞 0342.110.868</span><a href="https://maps.app.goo.gl/Z4dByzJhraP7a52e9" target="_blank" class="btn-map">Bản đồ</a></div>
       </div>
-
       <div class="timeline-item" data-type="Thăm quan">
         <div class="item-header"><span class="time">09:47 - 10:42</span><span class="badge badge-pri">Chính</span></div>
         <div class="route">Đồi thông bản Áng</div>
-        <div class="item-footer">
-          <a href="https://maps.app.goo.gl/fN2w3KZNnBykMQBE7" target="_blank" class="btn-map"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
-        </div>
-        <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd3_2')"></div>
+        <div class="item-footer"><span></span><a href="https://maps.app.goo.gl/fN2w3KZNnBykMQBE7" target="_blank" class="btn-map">Bản đồ</a></div>
       </div>
-
       <div class="timeline-item" data-type="Di chuyển">
         <div class="item-header"><span class="time">10:42 - 11:47</span><span class="badge badge-pri">Chính</span></div>
         <div class="route">Mama's house (Pack đồ checkout)</div>
       </div>
-
       <div class="timeline-item" data-type="Ăn uống">
         <div class="item-header"><span class="time">11:47 - 12:57</span><span class="badge badge-pri">Chính</span></div>
         <div class="route">Bếp Mệ Tình</div>
-        <div class="memory-log"><input type="text" class="memory-input" placeholder="✨ Lưu kỷ niệm/cảm xúc tại đây..." onchange="saveMemory(this, 'd3_3')"></div>
       </div>
-
       <div class="timeline-item" data-type="Di chuyển">
         <div class="item-header"><span class="time">12:57 ➔ Về Hà Nội</span><span class="badge badge-pri">Chính</span></div>
         <div class="route">Bếp Mệ Tình <span class="arrow">➔</span> Nhà (Hà Nội)</div>
       </div>
     </div>
 
+    <!-- TAB NHẬT KÝ (THREADS & INSTAGRAM STYLE) -->
+    <div id="diary" class="tab-content">
+      <!-- Form viết bài -->
+      <div class="diary-composer">
+        <div class="composer-header">
+          <div class="avatar">U</div>
+          <textarea id="postText" class="composer-input" rows="2" placeholder="Viết khoảnh khắc Mộc Châu cùng em Uyên..."></textarea>
+        </div>
+        <input type="file" id="imageInput" accept="image/*" style="display:none" onchange="handleImageSelect(event)">
+        <div class="composer-actions">
+          <i class="fa-regular fa-image btn-attach" onclick="document.getElementById('imageInput').click()" title="Đính kèm ảnh"></i>
+          <button class="btn-post" onclick="createPost()">Đăng bài</button>
+        </div>
+        <img id="imgPreview" style="width:100%; max-height:180px; object-fit:cover; border-radius:10px; margin-top:10px; display:none;">
+      </div>
+
+      <!-- Feed bài đăng -->
+      <div id="diaryFeed"></div>
+    </div>
+
     <!-- STATS WIDGET -->
     <div class="stats-widget">
-      <span>💚 Chuyến đi tình yêu Mộc Châu 2026</span>
+      <span>Chuyến đi Mộc Châu 2026</span>
       <div class="stats-grid">
         <div><span class="stat-number">3</span>Ngày 2 đêm</div>
         <div><span class="stat-number">12+</span>Điểm đến</div>
@@ -595,6 +381,7 @@
 
   <script>
     let currentCategory = 'all';
+    let selectedImageData = '';
 
     function updateCountdown() {
       const tripDate = new Date("2026-08-28T08:00:00").getTime();
@@ -604,9 +391,9 @@
       if (diff > 0) {
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        document.getElementById("countdown").innerHTML = `⏳ Còn <b>${days} ngày ${hours} giờ</b> nữa là đi thoy em Uyên oyyy! 💕`;
+        document.getElementById("countdown").innerHTML = `⏳ Còn <b>${days} ngày ${hours} giờ</b> nữa là đi thôi em Uyên ơi! 💕`;
       } else {
-        document.getElementById("countdown").innerHTML = `🍃 Đi Mộc Châu uống rượu mơ Mộc Châu thoyyyy 🎉`;
+        document.getElementById("countdown").innerHTML = `🍃 Mộc Châu vẫy gọi! Chúc hai đứa mình có chuyến đi tuyệt vời! 🎉`;
       }
     }
     updateCountdown();
@@ -617,12 +404,12 @@
       "Em Uyên ơi,\n\n" +
       "Chuyến đi Mộc Châu của hai đứa mình đã cận kề rồi đấy! 🍃\n\n" +
       "Em nhớ kiểm tra và chuẩn bị đầy đủ hành trang nha:\n" +
-      "- 👗 Quần áo em thích \n" +
+      "- 👗 Váy đẹp / Đồ chụp ảnh sống ảo\n" +
       "- 🧥 Áo khoác mỏng (Mộc Châu buổi tối se lạnh)\n" +
       "- 🆔 CCCD & Giấy tờ tùy thân\n" +
       "- 🔋 Sạc dự phòng & Dây sạc\n" +
       "- 🧴 Kem chống nắng & Xịt chống muỗi\n\n" +
-      "Xem chi tiết lịch trình đầy đủ tại web anh đã chuẩn bị nhé! Tối qua Nhà 2 thoyyy! 💕"
+      "Xem chi tiết lịch trình đầy đủ tại web anh đã chuẩn bị nhé! Chiều anh qua đón em! 💕"
     );
     document.getElementById("emailBtn").href = `mailto:${mailTo}?subject=${mailSubject}&body=${mailBody}`;
 
@@ -635,7 +422,7 @@
       activeTab.classList.add('active');
 
       const filterWrapper = document.getElementById('filterWrapper');
-      if (dayId === 'prep') {
+      if (dayId === 'prep' || dayId === 'diary') {
         filterWrapper.style.display = 'none';
       } else {
         filterWrapper.style.display = 'flex';
@@ -684,18 +471,93 @@
     }
     loadChecklist();
 
-    function saveMemory(input, id) {
-      localStorage.setItem('mocchau_mem_' + id, input.value);
+    /* XỬ LÝ ĐĂNG BÀI NHẬT KÝ THREADS */
+    function handleImageSelect(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          selectedImageData = e.target.result;
+          const imgPreview = document.getElementById('imgPreview');
+          imgPreview.src = selectedImageData;
+          imgPreview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      }
     }
 
-    function loadMemories() {
-      document.querySelectorAll('.memory-input').forEach((input) => {
-        const parentId = input.getAttribute('onchange').match(/'([^']+)'/)[1];
-        const saved = localStorage.getItem('mocchau_mem_' + parentId);
-        if (saved) input.value = saved;
-      });
+    function createPost() {
+      const text = document.getElementById('postText').value.trim();
+      if (!text && !selectedImageData) return;
+
+      const posts = JSON.parse(localStorage.getItem('mocchau_threads_posts') || '[]');
+      const newPost = {
+        id: Date.now(),
+        author: 'Mộc Châu Journal',
+        time: 'Vừa xong',
+        content: text,
+        image: selectedImageData,
+        liked: false
+      };
+
+      posts.unshift(newPost);
+      localStorage.setItem('mocchau_threads_posts', JSON.stringify(posts));
+
+      document.getElementById('postText').value = '';
+      document.getElementById('imgPreview').style.display = 'none';
+      selectedImageData = '';
+
+      renderPosts();
     }
-    loadMemories();
+
+    function toggleLike(postId) {
+      const posts = JSON.parse(localStorage.getItem('mocchau_threads_posts') || '[]');
+      const post = posts.find(p => p.id === postId);
+      if (post) {
+        post.liked = !post.liked;
+        localStorage.setItem('mocchau_threads_posts', JSON.stringify(posts));
+        renderPosts();
+      }
+    }
+
+    function renderPosts() {
+      const feed = document.getElementById('diaryFeed');
+      let posts = JSON.parse(localStorage.getItem('mocchau_threads_posts') || '[]');
+
+      if (posts.length === 0) {
+        posts = [
+          {
+            id: 1,
+            author: 'Chuyến đi Mộc Châu',
+            time: '28/08/2026',
+            content: 'Chuẩn bị khởi hành lên Mộc Châu cùng em Uyên thôi! 🌿✨',
+            image: '',
+            liked: true
+          }
+        ];
+      }
+
+      feed.innerHTML = posts.map(post => `
+        <div class="threads-post">
+          <div class="post-author">
+            <div class="avatar">U</div>
+            <div class="author-info">
+              <div class="author-name">${post.author}</div>
+              <div class="post-time">${post.time}</div>
+            </div>
+          </div>
+          <div class="post-content">${post.content}</div>
+          ${post.image ? `<img src="${post.image}" class="post-img" style="display:block;">` : ''}
+          <div class="post-actions">
+            <i class="fa-${post.liked ? 'solid' : 'regular'} fa-heart ${post.liked ? 'liked' : ''}" onclick="toggleLike(${post.id})"></i>
+            <i class="fa-regular fa-comment"></i>
+            <i class="fa-regular fa-paper-plane"></i>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    renderPosts();
   </script>
 </body>
 </html>
